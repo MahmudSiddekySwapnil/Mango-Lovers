@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="template" content="greeny">
-    <meta name="title" content="greeny - Ecommerce Food Store HTML Template">
+    <meta name="template" content="BazarGhor">
+    <meta name="title" content="BazarGhor - At Your Door Step">
     <meta name="keywords"
-        content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online">
+        content="bazarGhor,bazar,market,bazzarghor,bazar ghor,ghore bazar,organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online">
     <title>Bazar Ghor</title>
-    <link rel="icon" href="front_assets/images/favicon.png">
+    <link rel="icon" href="front_assets/images/icon.png">
     <link rel="stylesheet" href="front_assets/fonts/flaticon/flaticon.css">
     <link rel="stylesheet" href="front_assets/fonts/icofont/icofont.min.css">
     <link rel="stylesheet" href="front_assets/fonts/fontawesome/fontawesome.min.css">
@@ -23,13 +23,14 @@
 
 <body>
     <div>
-        {{-- @include('landing_view.common.home_header') --}}
+        @include('landing_view.common.home_header')
+        @include('landing_view.common.top_navbar')
 
         <div>
             @yield('content')
         </div>
 
-        {{-- @include('landing_view.common.home_footer') --}}
+        @include('landing_view.common.home_footer')
     </div>
 
     <script src="front_assets/vendor/bootstrap/jquery-1.12.4.min.js"></script>
