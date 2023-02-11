@@ -24,6 +24,7 @@
 <body>
     <div>
         @include('landing_view.common.home_header')
+        
         @include('landing_view.common.top_navbar')
 
         <div>
