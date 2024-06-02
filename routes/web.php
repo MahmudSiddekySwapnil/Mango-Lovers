@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\landingViewController\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +13,14 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/',[HomeController::class,'home'])->name('home');
+
+Route::get('/dashboard',[HomeController::class,'home'])->name('home');
+
+Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+
+Route::get('/user_login',[HomeController::class,'userLogin'])->name('user_login');
+Route::get('/user_register',[HomeController::class,'userRegister'])->name('user_register');
+Route::post('/user_registration_process',[HomeController::class,'userRegistrationProcess'])->name('user_registration_process');
+Route::post('/user_login_process',[HomeController::class,'userLoginProcess'])->name('user_login_process');
+
