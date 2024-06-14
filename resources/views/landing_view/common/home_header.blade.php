@@ -1,9 +1,11 @@
 <div class="backdrop"></div>
 <a class="backtop fas fa-arrow-up" href="#"></a>
+@if(!session()->has('username'))
 <div class="header-top alert fade show">
     <p><a href="{{route('user_register')}}">Get Register</a></p>
     {{--         <button data-bs-dismiss="alert"><i class="fas fa-times"></i></button>--}}
 </div>
+@endif
 <header class="header-part">
     <div class="container">
         <div class="header-content">
@@ -48,10 +50,12 @@
                         class="fas fa-random"></i><sup>0</sup></a><a href="wishlist.html" class="header-widget"
                                                                      title="Wishlist"><i
                         class="fas fa-heart"></i><sup>0</sup></a>
-                <button class="header-widget header-cart" title="Cartlist"><i
-                        class="fas fa-shopping-basket"></i><sup>9+</sup><span>total price<small>৳ 3459.00</small></span>
+                <button class="header-widget header-cart" title="Cartlist">
+                    <i class="fas fa-shopping-basket"></i>
+                    <sup id="cart-count">0</sup>
                 </button>
             </div>
         </div>
     </div>
-</header>
+</header>{{--                    <span>total price<small id="cart-total-price">৳ 0.00</small></span>--}}
+

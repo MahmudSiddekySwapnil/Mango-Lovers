@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\LandingModel;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Products extends Model
+class Orders extends Model
 {
-    protected $table = 'Products';
+    protected $table = 'Orders';
     public $timestamps = true;
     use HasFactory;
 }

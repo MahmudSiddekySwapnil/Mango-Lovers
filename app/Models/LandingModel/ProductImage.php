@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\LandingModel;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reviews extends Model
+class ProductImage extends Model
 {
-    protected $table = 'Reviews';
+    protected $table = 'product_image';
     public $timestamps = true;
     use HasFactory;
 }
