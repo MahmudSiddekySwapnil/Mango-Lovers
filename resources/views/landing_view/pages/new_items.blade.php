@@ -69,6 +69,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const buttons = document.querySelectorAll('.custom-btn');
+
+
+
         buttons.forEach(function (button) {
             button.addEventListener('click', function () {
                 const productId = this.getAttribute('data-id');
@@ -92,11 +95,29 @@
                             previewItem.innerHTML = `<img src="${image}" alt="product">`;
                             previewSlider.appendChild(previewItem);
                         });
+                        const addToCartButton = document.getElementById('p-add');
+                        addToCartButton.setAttribute('data-id', data.sku);
+                        addToCartButton.setAttribute('data-sku', data.sku);
                         // const modal = new bootstrap.Modal(document.getElementById('product-view'));
+
+                        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                        let itemExists = cart.some(cartItem => cartItem.id === data.sku);
+                        if(itemExists){
+                            addToCartButton.textContent = "Already added in cart";
+                            addToCartButton.style.backgroundColor = "pink"; // or any color you want
+                        }else{
+                            addToCartButton.textContent = "Add to cart";
+                            addToCartButton.style.backgroundColor = "#119744";
+                        }
+
+
                         modal.show();
                     })
                     .catch(error => console.error('Error fetching product data:', error));
             });
         });
+
+
+
     });
 </script>

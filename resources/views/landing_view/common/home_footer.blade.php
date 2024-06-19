@@ -62,7 +62,7 @@
        <div class="row">
           <div class="col-sm-6 col-xl-3">
              <div class="footer-widget">
-                <a class="footer-logo" href="#"><img src="front_assets/images/logo.png" alt="logo"></a>
+                <a class="footer-logo" href="#"><img src="front_assets/images/mango/logo.png" alt="logo"></a>
                 <p class="footer-desc">Discover the world's bazaar with Bazarghor.Shop now at Bazarghor, Experience convenience and variety in one place.
                    </p>
                 <ul class="footer-social">
@@ -80,11 +80,11 @@
                 <ul class="footer-contact">
                    <li>
                       <i class="icofont-ui-email"></i>
-                      <p><span>support@bazarghor.com</span><span>info@bazarghor.com</span></p>
+                      <p><span>farukirahi@gmail.com</span></p>
                    </li>
                    <li>
                       <i class="icofont-ui-touch-phone"></i>
-                      <p><span>+8801775503498</span><span>+8801839500005</span></p>
+                      <p><span>01325-444569</span></p>
                    </li>
                    <li>
                       <i class="icofont-location-pin"></i>

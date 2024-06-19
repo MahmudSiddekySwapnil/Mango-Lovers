@@ -6,9 +6,9 @@
                 <ul class="navbar-list">
                    <li class="navbar-item dropdown">
                       <a class="navbar-link" href="/" style="color:#0cb94e">home</a>
-                     
+
                    </li>
-                   
+
                    <li class="navbar-item dropdown">
                       <a class="navbar-link dropdown-arrow" href="#">pages</a>
                       <ul class="dropdown-position-list">
@@ -48,13 +48,13 @@
                 </ul>
                 <div class="navbar-info-group">
                     <div class="navbar-info"><i class="icofont-ui-touch-phone"></i>
-                        <p><small>call us</small><span>(+880) 183 8288 389</span></p>
+                        <p><small>call us</small><span>01325-444569</span></p>
                     </div>
                     <div class="navbar-info"><i class="icofont-ui-email"></i>
-                        <p><small>email us</small><span>support@example.com</span></p>
+                        <p><small>email us</small><span>farukirahi@gmail.com</span></p>
                     </div>
                 </div>
-                
+
              </div>
           </div>
        </div>

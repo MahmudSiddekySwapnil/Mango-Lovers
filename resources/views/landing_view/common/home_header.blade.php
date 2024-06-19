@@ -17,7 +17,7 @@
                 </a>
                 <button class="header-src"><i class="fas fa-search"></i></button>
             </div>
-            <a href="/" class="header-logo"><img src="front_assets/images/logo.png" alt="logo"></a>
+            <a href="/" class="header-logo"><img src="front_assets/images/mango/logo.png" alt="logo" style="width:100px; height:50px;"></a>
             @if(session()->has('username'))
                 <li class="navbar-item dropdown header-widget">
                     <img src="front_assets/images/user.png" alt="user">

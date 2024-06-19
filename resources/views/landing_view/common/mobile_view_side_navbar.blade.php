@@ -510,7 +510,7 @@
                                 </button>
                             </div>
                             <div class="view-add-group">
-                                <button class="p-add" title="Add to Cart">
+                                <button class="p-add" title="Add to Cart" id="p-add" data-sku="">
                                     <i class="fas fa-shopping-basket"></i>
                                     <span>add to cart</span>
                                 </button>
@@ -535,6 +535,7 @@
     //Get elements end
 
     document.addEventListener('DOMContentLoaded', function () {
+
         const quantityInput = document.getElementById('quantity-input');
         const minusButton = document.querySelector('.a-minus');
         // const plusButton = document.querySelector('.a-plus');
@@ -554,7 +555,7 @@
         minusButton.addEventListener('click', function () {
             // Decrease the quantity if it's more than 1
             if (parseInt(quantityInput.value) > 1) {
-                quantityInput.value = parseInt(quantityInput.value) - 1;
+                // quantityInput.value = parseInt(quantityInput.value) - 1;
                 updateMinusButtonState(); // Update button state after change
             }
         });
@@ -577,21 +578,13 @@
     // Event listeners for quantity input changes
     quantityInput.addEventListener('input', updateTotalPrice);
     actionMinus.addEventListener('click', () => {
-
-        // if (quantityInput.value > 1) {
-        //     quantityInput.value = parseInt(quantityInput.value) - 1;
-        //     updateTotalPrice();
-        // }
-
         const price = parseFloat(document.getElementById('product-price').textContent.replace(/[^\d.]/g, ''));
         const currentQuantity = parseInt(quantityInput.value);
         quantityInput.value = currentQuantity - 1;
         const totalPrice = quantityInput.value * price;
-
         if (quantityInput.value === 1) {
             document.getElementById('total-price').innerHTML = parseFloat(document.getElementById('product-price').textContent.replace(/[^\d.]/g, ''));
         }
-
         totalPriceElement.innerText = totalPrice.toFixed(2);
         document.getElementById('quantity-input').value = currentQuantity;
     });
@@ -620,34 +613,51 @@
 
         // Function to update cart display
         function updateCartDisplay() {
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-            cartCountElement.textContent = totalItems;
-            cartTotalPriceElement.textContent = `৳ ${totalPrice.toFixed(2)}`;
+            // const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            // const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+            // cartCountElement.textContent = totalItems;
+            // cartTotalPriceElement.textContent = `৳ ${totalPrice.toFixed(2)}`;
+
+
+            // Retrieve the cart from local storage and parse it
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Count the total number of items in the cart array
+            let totalItems = cart.length;
+
+// Ensure the count is a string before assigning it to textContent
+            cartCountElement.textContent = totalItems.toString();
         }
 
         // Function to add product to cart
-        function addToCart(productId, quantity, price) {
-            alert(productId);
-            // const existingItem = cart.find(item => item.id === productId);
-            // if (existingItem) {
-            //     existingItem.quantity += quantity;
-            // } else {
-            //     cart.push({ id: productId, quantity: quantity, price: price });
-            // }
+        function addToCart(productId, quantity, price, totalAmount) {
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                console.log(existingItem.id);
+            } else {
+                cart.push({id: productId, quantity: quantity, price: totalAmount});
+            }
             // // Update local storage with the updated cart data
-            // localStorage.setItem('cart', JSON.stringify(cart));
-            // updateCartDisplay(); // Update cart display after modifying the cart
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay(); // Update cart display after modifying the cart
         }
 
         // Add click event listener to "Add to Cart" button
+
         addToCartButton.addEventListener('click', () => {
-            // const quantity = parseInt(document.querySelector('.action-input').value);
             const productId = document.getElementById('product-sku').textContent;
             const quantity = document.getElementById('quantity-input').value;
             const price = parseFloat(document.getElementById('product-price').textContent.replace(/[^\d.]/g, ''));
-            alert(price);
-            // addToCart(productId, quantity, price);
+            const totalAmount = parseFloat(document.getElementById('total-price').textContent.replace(/[^\d.]/g, ''));
+            const sku = addToCartButton.getAttribute('data-sku');
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let itemExists = cart.some(cartItem => cartItem.id === sku);
+            if (itemExists) {
+                alert("Already added in cart");
+            } else {
+                addToCart(productId, quantity, price, totalAmount);
+            }
+
         });
 
         // Initial update of cart display on page load
