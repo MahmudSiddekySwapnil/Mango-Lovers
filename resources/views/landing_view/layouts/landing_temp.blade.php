@@ -7,9 +7,9 @@
     <meta name="template" content="MangoLovers">
     <meta name="title" content="MangoLovers">
     <meta name="keywords"
-          content="bazarGhor,bazar,market,bazzarghor,bazar ghor,ghore bazar,organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online">
+          content="MangoLovers,bazar,market,Mango,bazar ghor,ghore bazar,organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online">
     <title>MangoLovers</title>
-    <link rel="icon" href="front_assets/images/icon.png">
+    <link rel="icon" href="front_assets/images/mango/logo.png">
     <link rel="stylesheet" href="front_assets/fonts/flaticon/flaticon.css">
     <link rel="stylesheet" href="front_assets/fonts/icofont/icofont.min.css">
     <link rel="stylesheet" href="front_assets/fonts/fontawesome/fontawesome.min.css">

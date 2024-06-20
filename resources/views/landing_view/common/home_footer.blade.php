@@ -63,7 +63,7 @@
           <div class="col-sm-6 col-xl-3">
              <div class="footer-widget">
                 <a class="footer-logo" href="#"><img src="front_assets/images/mango/logo.png" alt="logo"></a>
-                <p class="footer-desc">Discover the world's bazaar with Bazarghor.Shop now at Bazarghor, Experience convenience and variety in one place.
+                <p class="footer-desc">Discover the world's bazaar with Mango Lovers.Shop now at Mango Lovers, Experience convenience and variety in one place.
                    </p>
                 <ul class="footer-social">
                    <li><a class="icofont-facebook" href="#"></a></li>
