@@ -66,6 +66,20 @@
     </div>
 </section>
 
+
+<section class="section promo-part">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="promo-content" style="background: url(front_assets/images/mango/I.jpg) no-repeat center;">
+{{--                    <h3>only <span>$45</span>per kilogram</h3>--}}
+                    <h2>Fresh Mango</h2>
+{{--                    <a href="shop-4column.html" class="btn btn-inline"><i class="fas fa-shopping-basket"></i><span>shop now</span></a>--}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const buttons = document.querySelectorAll('.custom-btn');

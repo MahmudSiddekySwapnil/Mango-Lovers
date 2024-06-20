@@ -79,7 +79,7 @@
                     </p>
                 </div>
                 <div class="user-form-footer">
-                    <p>Greeny | &COPY; Copyright by <a href="#">Mironcoder</a>
+                    <p>Greeny | &COPY; Copyright by <a href="#">Mango Lovers</a>
                     </p>
                 </div>
             </div>
