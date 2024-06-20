@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col">
                 <div class="section-heading">
-                    <h2>collected new items</h2>
+                    <h2>MANGO</h2>
                 </div>
             </div>
         </div>

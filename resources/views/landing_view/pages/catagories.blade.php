@@ -3,7 +3,7 @@
        <div class="row">
           <div class="col-12">
              <div class="section-heading">
-                <h2>shop by categories</h2>
+                <h2>WHY WE ARE DIFFERENT</h2>
              </div>
           </div>
        </div>
@@ -12,62 +12,62 @@
              <div class="category-slider slider-arrow">
                 <div class="category-wrap">
                    <div class="category-media">
-                      <img src="front_assets/images/category/dairy.jpg" alt="category">
+                      <img src="front_assets/images/mango/Raihan.jpg" alt="category">
                       <div class="category-overlay"><a href="shop-4column.html"><i class="fas fa-link"></i></a></div>
                    </div>
                    <div class="category-meta">
-                      <h4>dairy items</h4>
-                      <p>(25 items)</p>
+                      <h4>Mango</h4>
+                       <p>Mangoes are tropical fruits known for their sweet, juicy flesh and vibrant orange color.</p>
                    </div>
                 </div>
                 <div class="category-wrap">
                    <div class="category-media">
-                      <img src="front_assets/images/category/vegetables.jpg" alt="category">
+                      <img src="front_assets/images/mango/EMAZ.jpg" alt="category">
                       <div class="category-overlay"><a href="shop-4column.html"><i class="fas fa-link"></i></a></div>
                    </div>
                    <div class="category-meta">
-                      <h4>vegetable items</h4>
-                      <p>(25 items)</p>
+                      <h4>Mango</h4>
+                       <p>Mangoes are tropical fruits known for their sweet, juicy flesh and vibrant orange color.</p>
                    </div>
                 </div>
                 <div class="category-wrap">
                    <div class="category-media">
-                      <img src="front_assets/images/category/drinks.jpg" alt="category">
+                      <img src="front_assets/images/mango/shamim.JPG" alt="category">
                       <div class="category-overlay"><a href="shop-4column.html"><i class="fas fa-link"></i></a></div>
                    </div>
                    <div class="category-meta">
-                      <h4>coffe & drinks</h4>
-                      <p>(25 items)</p>
+                      <h4>Premium Mango</h4>
+                      <p>Mangoes are tropical fruits known for their sweet, juicy flesh and vibrant orange color.</p>
                    </div>
                 </div>
                 <div class="category-wrap">
                    <div class="category-media">
-                      <img src="front_assets/images/category/fish.jpg" alt="category">
+                      <img src="front_assets/images/mango/mangoimg.JPEG" alt="category">
                       <div class="category-overlay"><a href="shop-4column.html"><i class="fas fa-link"></i></a></div>
                    </div>
                    <div class="category-meta">
-                      <h4>fish items</h4>
-                      <p>(25 items)</p>
+                      <h4>Mango</h4>
+                       <p>Mangoes are tropical fruits known for their sweet, juicy flesh and vibrant orange color.</p>
                    </div>
                 </div>
                 <div class="category-wrap">
                    <div class="category-media">
-                      <img src="front_assets/images/category/groceries.jpg" alt="category">
+                      <img src="front_assets/images/mango/I.jpg" alt="category">
                       <div class="category-overlay"><a href="shop-4column.html"><i class="fas fa-link"></i></a></div>
                    </div>
                    <div class="category-meta">
-                      <h4>grocery items</h4>
-                      <p>(25 items)</p>
+                      <h4>Mango</h4>
+                       <p>Mangoes are tropical fruits known for their sweet, juicy flesh and vibrant orange color.</p>
                    </div>
                 </div>
                 <div class="category-wrap">
                    <div class="category-media">
-                      <img src="front_assets/images/category/meat.jpg" alt="category">
+                      <img src="front_assets/images/mango/IMG.JPG" alt="category">
                       <div class="category-overlay"><a href="shop-4column.html"><i class="fas fa-link"></i></a></div>
                    </div>
                    <div class="category-meta">
-                      <h4>meat items</h4>
-                      <p>(25 items)</p>
+                      <h4>Mango</h4>
+                       <p>Mangoes are tropical fruits known for their sweet, juicy flesh and vibrant orange color.</p>
                    </div>
                 </div>
              </div>

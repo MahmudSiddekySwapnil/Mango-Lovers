@@ -25,7 +25,7 @@
 
 {{--    @include('landing_view.pages.top_catagories')--}}
 
-{{--    @include('landing_view.pages.catagories')--}}
+    @include('landing_view.pages.catagories')
 
 {{--    @include('landing_view.pages.brands')--}}
 

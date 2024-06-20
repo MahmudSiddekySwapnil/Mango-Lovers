@@ -195,20 +195,21 @@
              </div>
           </li>
           <li class="banner-category-item">
-             <a href="#"><i class="flaticon-fish"></i><span>fishes</span></a>
+{{--             <a href="#"><i class="flaticon-fish"></i><span>fishes</span></a>--}}
              <div class="banner-category-dropdown">
-                <h5>fishes item</h5>
-                <div class="banner-sub-category">
-                   <ul>
-                      <li><a href="#">Blue Marlin</a></li>
-                      <li><a href="#">Flounder</a></li>
-                      <li><a href="#">Hogfish</a></li>
-                      <li><a href="#">Mako Shark</a></li>
-                      <li><a href="#">pompano</a></li>
-                   </ul>
-                </div>
+{{--                <h5>fishes item</h5>--}}
+{{--                <div class="banner-sub-category">--}}
+{{--                   <ul>--}}
+{{--                      <li><a href="#">Blue Marlin</a></li>--}}
+{{--                      <li><a href="#">Flounder</a></li>--}}
+{{--                      <li><a href="#">Hogfish</a></li>--}}
+{{--                      <li><a href="#">Mako Shark</a></li>--}}
+{{--                      <li><a href="#">pompano</a></li>--}}
+{{--                   </ul>--}}
+{{--                </div>--}}
              </div>
           </li>
        </ul>
     </div>
  </div>
+
