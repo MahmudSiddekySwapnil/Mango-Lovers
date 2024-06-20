@@ -117,7 +117,7 @@
           <div class="col-sm-6 col-xl-3">
              <div class="footer-widget">
                 <h3 class="footer-title">Download App</h3>
-                <p class="footer-desc">Bazarghor, a shopping bliss,<br>
+                <p class="footer-desc">a shopping bliss,<br>
                   Convenient delivery, with a single miss.<br>
                   One-stop-shop for all your needs,<br>
                   Shop now and fulfill your greed.<br>
@@ -129,7 +129,7 @@
        <div class="row">
           <div class="col-12">
              <div class="footer-bottom">
-                <p class="footer-copytext">&copy; All Copyrights Reserved by <a href="www.bazarghor.com">BazarGhor</a></p>
+                <p class="footer-copytext">&copy; All Copyrights Reserved by <a href="www.bazarghor.com">Mango Lovers</a></p>
                 <div class="footer-card"><a href="#"><img src="front_assets/images/payment/jpg/01.jpg" alt="payment"></a><a href="#"><img src="front_assets/images/payment/jpg/02.jpg" alt="payment"></a><a href="#"><img src="front_assets/images/payment/jpg/03.jpg" alt="payment"></a><a href="#"><img src="front_assets/images/payment/jpg/04.jpg" alt="payment"></a></div>
              </div>
           </div>

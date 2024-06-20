@@ -13,7 +13,7 @@
                 <button class="header-user">
                     <img src="front_assets/images/user.png" alt="user">
                 </button>
-                <a href="/"><img src="front_assets/images/logo.png" alt="logo">
+                <a href="/"><img src="front_assets/images/mango/logo.png" alt="logo">
                 </a>
                 <button class="header-src"><i class="fas fa-search"></i></button>
             </div>
