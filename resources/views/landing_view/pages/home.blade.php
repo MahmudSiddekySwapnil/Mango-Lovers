@@ -31,5 +31,5 @@
 
 {{--    @include('landing_view.pages.client_feedback')--}}
 
-{{--    @include('landing_view.pages.blog')--}}
+    @include('landing_view.pages.blog')
 @endsection
