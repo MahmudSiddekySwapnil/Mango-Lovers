@@ -97,8 +97,8 @@
                         document.getElementById('product-sku').textContent = data.sku;
                         document.getElementById('product-brand').textContent = data.brand;
                         document.getElementById('product-brand').href = data.brand_link || '#';
-                        document.getElementById('product-original-price').textContent = `$${data.original_price}`;
-                        document.getElementById('product-price').innerHTML = `$${data.price}<small>/per kilo</small>`;
+                        document.getElementById('product-original-price').textContent = `TK:${data.original_price}`;
+                        document.getElementById('product-price').innerHTML = `TK:${data.price}<small>/per kilo</small>`;
                         document.getElementById('total-price').innerHTML = `${data.price}<small></small>`;
                         document.getElementById('quantity-input').value = 1;
                         document.getElementById('product-description').textContent = data.description;

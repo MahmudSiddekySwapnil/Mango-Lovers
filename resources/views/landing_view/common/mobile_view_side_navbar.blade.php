@@ -111,7 +111,7 @@
         </li>
     </ul>
     <div class="category-footer">
-        <p>All Rights Reserved by <a href="#">Mironcoder</a></p>
+        <p>All Rights Reserved by <a href="#">Mango Lovers</a></p>
     </div>
 </aside>
 <aside class="cart-sidebar">
@@ -197,7 +197,7 @@
             <div class="cart-info-group">
                 <div class="cart-info">
                     <h6><a href="product-single.html">existing product name</a></h6>
-                    <p>Unit Price - $8.75</p>
+                    <p>Unit Price - TK:8.75</p>
                 </div>
                 <div class="cart-action-group">
                     <div class="product-action">
@@ -220,7 +220,7 @@
             <div class="cart-info-group">
                 <div class="cart-info">
                     <h6><a href="product-single.html">existing product name</a></h6>
-                    <p>Unit Price - $8.75</p>
+                    <p>Unit Price - TK:8.75</p>
                 </div>
                 <div class="cart-action-group">
                     <div class="product-action">
@@ -231,7 +231,7 @@
                         <button
                             class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
                     </div>
-                    <h6>$56.98</h6>
+                    <h6>TK:56.98</h6>
                 </div>
             </div>
         </li>
@@ -353,7 +353,7 @@
             </div>
         </div>
         <div class="nav-footer">
-            <p>All Rights Reserved by <a href="#">Mironcoder</a></p>
+            <p>All Rights Reserved by <a href="#">Mango Lovers</a></p>
         </div>
     </div>
 </aside>
@@ -481,7 +481,7 @@
                                 <del id="product-original-price"></del>
                                 <span id="product-price"><small>/per kilo</small></span>
                                 <br>
-                                <span>Total Price: $<span id="total-price"></span></span>
+                                <span>Total Price: TK:<span id="total-price"></span></span>
                             </h3>
                             <p id="product-description" class="view-desc"></p>
                             <div class="view-list-group">

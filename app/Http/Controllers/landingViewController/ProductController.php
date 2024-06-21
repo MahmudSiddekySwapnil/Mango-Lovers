@@ -28,7 +28,7 @@ class ProductController extends Controller
             $data = [
                 'name' => $product->Name,
                 'sku' => $product->SKU ?? 'N/A',
-                'original_price' => $product->OriginalPrice ?? 500,
+                'original_price' => $product->OriginalPrice ?? 155,
                 'price' => $product->Price,
                 'description' => $product->Description,
                 'images' => $images,
