@@ -27,7 +27,7 @@
 
     @include('landing_view.pages.catagories')
 
-{{--    @include('landing_view.pages.brands')--}}
+    @include('landing_view.pages.brands')
 
 {{--    @include('landing_view.pages.client_feedback')--}}
 
