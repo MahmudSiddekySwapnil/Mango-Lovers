@@ -4,6 +4,7 @@
           <div class="col-12">
              <div class="section-heading">
                 <h2>Read our articles</h2>
+                 <hr>
              </div>
           </div>
        </div>

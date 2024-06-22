@@ -26,6 +26,7 @@
           <div class="col-12">
              <div class="section-heading">
                 <h2>WHY WE ARE DIFFERENT</h2>
+                 <hr>
              </div>
           </div>
        </div>

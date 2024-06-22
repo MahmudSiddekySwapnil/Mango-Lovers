@@ -4,6 +4,7 @@
             <div class="col">
                 <div class="section-heading">
                     <h2>MANGO</h2>
+                    <hr>
                 </div>
             </div>
         </div>
