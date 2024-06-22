@@ -18,6 +18,26 @@
 {{--                <p>(45 items)</p>--}}
 {{--             </div>--}}
           </div>
+           <div class="brand-wrap">
+               <div class="brand-media">
+                   <img src="front_assets/images/mango/aj.jpeg" alt="brand">
+                   {{--                <div class="brand-overlay"><a href="brand-single.html"><i class="fas fa-link"></i></a></div>--}}
+               </div>
+               {{--             <div class="brand-meta">--}}
+               {{--                <h4>natural greeny</h4>--}}
+               {{--                <p>(45 items)</p>--}}
+               {{--             </div>--}}
+           </div>
+           <div class="brand-wrap">
+               <div class="brand-media">
+                   <img src="front_assets/images/mango/ag.jpeg" alt="brand">
+                   {{--                <div class="brand-overlay"><a href="brand-single.html"><i class="fas fa-link"></i></a></div>--}}
+               </div>
+               {{--             <div class="brand-meta">--}}
+               {{--                <h4>natural greeny</h4>--}}
+               {{--                <p>(45 items)</p>--}}
+               {{--             </div>--}}
+           </div>
           <div class="brand-wrap">
              <div class="brand-media">
                 <img src="front_assets/images/mango/akhtargroup.jpeg" alt="brand">

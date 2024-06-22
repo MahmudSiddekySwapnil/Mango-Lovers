@@ -22,13 +22,13 @@
                                         <button class="product-wish wish"><i class="fas fa-heart"></i></button>
                                         <a class="product-image" href="product-video.html"><img
                                                 src="{{ asset($list->picture) }}" alt="product"></a>
-                                        <div class="product-widget">
-                                            <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
-                                            <a title="Product Video" href="https://youtu.be/9xzcVxSBbG8"
-                                               class="venobox fas fa-play" data-autoplay="true" data-vbtype="video"></a>
-                                            <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal"
-                                               data-bs-target="#product-view"></a>
-                                        </div>
+{{--                                        <div class="product-widget">--}}
+{{--                                            <a title="Product Compare" href="compare.html" class="fas fa-random"></a>--}}
+{{--                                            <a title="Product Video" href="https://youtu.be/9xzcVxSBbG8"--}}
+{{--                                               class="venobox fas fa-play" data-autoplay="true" data-vbtype="video"></a>--}}
+{{--                                            <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal"--}}
+{{--                                               data-bs-target="#product-view"></a>--}}
+{{--                                        </div>--}}
                                     </div>
                                     <div class="product-content">
                                         <div class="product-rating"><i class="active icofont-star"></i><i

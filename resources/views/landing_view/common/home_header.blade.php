@@ -46,10 +46,10 @@
             <form class="header-form"><input type="text" placeholder="Search anything...">
                 <button><i class="fas fa-search"></i></button>
             </form>
-            <div class="header-widget-group"><a href="compare.html" class="header-widget" title="Compare List"><i
-                        class="fas fa-random"></i><sup>0</sup></a><a href="wishlist.html" class="header-widget"
-                                                                     title="Wishlist"><i
-                        class="fas fa-heart"></i><sup>0</sup></a>
+{{--            <div class="header-widget-group"><a href="compare.html" class="header-widget" title="Compare List"><i--}}
+{{--                        class="fas fa-random"></i><sup>0</sup></a><a href="wishlist.html" class="header-widget"--}}
+{{--                                                                     title="Wishlist"><i--}}
+{{--                        class="fas fa-heart"></i><sup>0</sup></a>--}}
                 <button class="header-widget header-cart" title="Cartlist">
                     <i class="fas fa-shopping-basket"></i>
                     <sup id="cart-count">0</sup>
