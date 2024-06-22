@@ -72,8 +72,8 @@
                 <div class="intro-wrap">
                     <div class="intro-icon"><i class="fas fa-truck"></i></div>
                     <div class="intro-content">
-                        <h5>free home delivery</h5>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+                        <h5><b>হোম ডেলিভারি</b></h5>
+                        <p>আমাদের ডেলিভারি ২৪-৭২ ঘণ্টার মধ্যে সম্পন্ন হয়।</p>
                     </div>
                 </div>
             </div>
@@ -81,8 +81,8 @@
                 <div class="intro-wrap">
                     <div class="intro-icon"><i class="fas fa-sync-alt"></i></div>
                     <div class="intro-content">
-                        <h5>instant return policy</h5>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+                        <h5> <b>রিটার্ন পলিসি</b> </h5>
+                        <p>যদি প্রোডাক্টে কোন সমস্যা থাকে, তাহলে টাকা ফেরত দেওয়া হয় অথবা প্রোডাক্ট পরিবর্তন করা হয়।</p>
                     </div>
                 </div>
             </div>
@@ -90,8 +90,8 @@
                 <div class="intro-wrap">
                     <div class="intro-icon"><i class="fas fa-headset"></i></div>
                     <div class="intro-content">
-                        <h5>quick support system</h5>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+                        <h5><b>দ্রুত সহায়তা ব্যবস্থা</b></h5>
+                        <p>২৪/৭ দ্রুত সহায়তা প্রদান করা হয়।</p>
                     </div>
                 </div>
             </div>
@@ -99,8 +99,8 @@
                 <div class="intro-wrap">
                     <div class="intro-icon"><i class="fas fa-lock"></i></div>
                     <div class="intro-content">
-                        <h5>secure payment way</h5>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+                        <h5><b>পেমেন্ট পদ্ধতি</b></h5>
+                        <p>মোবাইল ব্যাংকিং এবং কার্ড পেমেন্ট উপলব্ধ।</p>
                     </div>
                 </div>
             </div>
