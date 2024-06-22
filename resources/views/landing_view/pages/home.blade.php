@@ -29,7 +29,7 @@
 
     @include('landing_view.pages.brands')
 
-{{--    @include('landing_view.pages.client_feedback')--}}
+    @include('landing_view.pages.client_feedback')
 
     @include('landing_view.pages.blog')
 @endsection
