@@ -362,7 +362,7 @@
     <button class="cate-btn" title="Category List"><i
             class="fas fa-list"></i><span>category</span></button>
     <button class="cart-btn" title="Cartlist"><i
-            class="fas fa-shopping-basket"></i><span>cartlist</span><sup>9+</sup></button>
+            class="fas fa-shopping-basket"></i><span>cartlist</span><sup id="cart-count">0</sup></button>
     <a href="wishlist.html"
        title="Wishlist"><i class="fas fa-heart"></i><span>wishlist</span><sup>0</sup></a><a href="compare.html"
                                                                                             title="Compare List"><i
@@ -606,29 +606,21 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         const addToCartButton = document.querySelector('.p-add');
         const cartCountElement = document.getElementById('cart-count');
-        // const cartTotalPriceElement = document.getElementById('cart-total-price');
-
         // Initialize cart from local storage or start with an empty array
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
         // Function to update cart display
         function updateCartDisplay() {
             // const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
             // const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
             // cartCountElement.textContent = totalItems;
             // cartTotalPriceElement.textContent = `৳ ${totalPrice.toFixed(2)}`;
-
-
             // Retrieve the cart from local storage and parse it
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-// Count the total number of items in the cart array
+            // Count the total number of items in the cart array
             let totalItems = cart.length;
-
-// Ensure the count is a string before assigning it to textContent
+            // Ensure the count is a string before assigning it to textContent
             cartCountElement.textContent = totalItems.toString();
         }
-
         // Function to add product to cart
         function addToCart(productId, quantity, price, totalAmount) {
             const existingItem = cart.find(item => item.id === productId);
@@ -637,13 +629,12 @@
             } else {
                 cart.push({id: productId, quantity: quantity, price: totalAmount});
             }
-            // // Update local storage with the updated cart data
+            // Update local storage with the updated cart data
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartDisplay(); // Update cart display after modifying the cart
         }
 
         // Add click event listener to "Add to Cart" button
-
         addToCartButton.addEventListener('click', () => {
             const productId = document.getElementById('product-sku').textContent;
             const quantity = document.getElementById('quantity-input').value;
@@ -659,7 +650,6 @@
             }
 
         });
-
         // Initial update of cart display on page load
         updateCartDisplay();
     });
