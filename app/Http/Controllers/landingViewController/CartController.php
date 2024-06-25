@@ -4,64 +4,183 @@ namespace App\Http\Controllers\landingViewController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+//    public function addToCart(Request $request)
+//    {
+//        $productId = $request->input('id');
+//        $productName = $request->input('name');
+//        $productPrice = $request->input('price');
+//
+//        // Perform validation or any other necessary checks
+//
+//        // Add to session/cart
+//        $cart = session()->get('cart', []);
+//        if (!isset($cart[$productId])) {
+//            $cart[$productId] = [
+//                'id' => $productId,
+//                'name' => $productName,
+//                'price' => $productPrice,
+//                'quantity' => 1
+//            ];
+//        } else {
+//            $cart[$productId]['quantity']++;
+//        }
+//        session()->put('cart', $cart);
+//
+//        return response()->json(['message' => 'Product added to cart']);
+//    }
+//
+//    public function updateCart(Request $request)
+//    {
+//        $productId = $request->input('id');
+//        $quantity = $request->input('quantity');
+//
+//        // Perform validation or any other necessary checks
+//
+//        // Update session/cart
+//        $cart = session()->get('cart', []);
+//        if (isset($cart[$productId])) {
+//            $cart[$productId]['quantity'] = $quantity;
+//            session()->put('cart', $cart);
+//            return response()->json(['message' => 'Cart updated']);
+//        }
+//        return response()->json(['message' => 'Product not found in cart'], 404);
+//    }
+//
+//    public function removeFromCart(Request $request)
+//    {
+//        $productId = $request->input('id');
+//
+//        // Perform validation or any other necessary checks
+//
+//        // Remove from session/cart
+//        $cart = session()->get('cart', []);
+//        if (isset($cart[$productId])) {
+//            unset($cart[$productId]);
+//            session()->put('cart', $cart);
+//            return response()->json(['message' => 'Product removed from cart']);
+//        }
+//        return response()->json(['message' => 'Product not found in cart'], 404);
+//    }
+
+//    public function updateCart(Request $request)
+//    {
+//        $products = $request->input('products');
+//        // Store the products in the session or database
+//        Session::put('cart', $products);
+//
+//        return response()->json(['message' => 'Cart updated successfully']);
+//    }
+//
+//    public function getCart()
+//    {
+//        // Retrieve the products from the session or database
+//        $products = Session::get('cart', []);
+//
+//        return response()->json(['products' => $products]);
+//    }
+
     public function addToCart(Request $request)
     {
-        $productId = $request->input('id');
-        $productName = $request->input('name');
-        $productPrice = $request->input('price');
+        $sessionId = $request->session()->getId();
+        $product = $request->only(['sku', 'quantity', 'price', 'totalPrice']);
 
-        // Perform validation or any other necessary checks
+        // Check if the product is already in the cart
+        $existingProduct = DB::table('Carts')
+            ->where('session_id', $sessionId)
+            ->where('sku', $product['sku'])
+            ->first();
 
-        // Add to session/cart
-        $cart = session()->get('cart', []);
-        if (!isset($cart[$productId])) {
-            $cart[$productId] = [
-                'id' => $productId,
-                'name' => $productName,
-                'price' => $productPrice,
-                'quantity' => 1
-            ];
+        if ($existingProduct) {
+            // Update the existing product quantity and total price
+            DB::table('Carts')
+                ->where('id', $existingProduct->id)
+                ->update([
+                    'quantity' => $existingProduct->quantity + $product['quantity'],
+                    'total_price' => ($existingProduct->quantity + $product['quantity']) * $product['price'],
+                ]);
         } else {
-            $cart[$productId]['quantity']++;
+            // Insert a new product
+            DB::table('Carts')->insert([
+                'session_id' => $sessionId,
+                'sku' => $product['sku'],
+                'quantity' => $product['quantity'],
+                'price' => $product['price'],
+                'total_price' => $product['totalPrice'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
         }
-        session()->put('cart', $cart);
 
-        return response()->json(['message' => 'Product added to cart']);
+        return response()->json([
+            'message' => 'Product added to cart',
+            'product' => $product,
+        ], 200);
     }
+
+
 
     public function updateCart(Request $request)
     {
-        $productId = $request->input('id');
-        $quantity = $request->input('quantity');
+        $sessionId = $request->session()->getId();
+        $product = $request->only(['sku', 'quantity', 'price', 'totalPrice']);
 
-        // Perform validation or any other necessary checks
+        // Check if the product is already in the cart
+        $existingProduct = DB::table('Carts')
+            ->where('session_id', $sessionId)
+            ->where('sku', $product['sku'])
+            ->first();
 
-        // Update session/cart
-        $cart = session()->get('cart', []);
-        if (isset($cart[$productId])) {
-            $cart[$productId]['quantity'] = $quantity;
-            session()->put('cart', $cart);
-            return response()->json(['message' => 'Cart updated']);
+        if ($existingProduct) {
+            if ($product['quantity'] <= 0) {
+                // Remove the product from the cart if quantity is 0 or less
+                DB::table('Carts')->where('id', $existingProduct->id)->delete();
+            } else {
+                // Update the existing product quantity and total price
+                DB::table('Carts')
+                    ->where('id', $existingProduct->id)
+                    ->update([
+                        'quantity' => $product['quantity'],
+                        'total_price' => $product['totalPrice'],
+                    ]);
+            }
         }
-        return response()->json(['message' => 'Product not found in cart'], 404);
+
+        return response()->json([
+            'message' => 'Product quantity updated in cart',
+            'product' => $product,
+        ], 200);
+    }
+
+    public function clearCart(Request $request)
+    {
+        $sessionId = $request->session()->getId();
+
+        // Remove all products from the cart for the current session
+        DB::table('Carts')->where('session_id', $sessionId)->delete();
+
+        return response()->json([
+            'message' => 'Cart cleared'
+        ], 200);
     }
 
     public function removeFromCart(Request $request)
     {
-        $productId = $request->input('id');
+        $sessionId = $request->session()->getId();
+        $sku = $request->input('sku');
 
-        // Perform validation or any other necessary checks
+        // Remove the specific product from the cart
+        DB::table('Carts')
+            ->where('session_id', $sessionId)
+            ->where('sku', $sku)
+            ->delete();
 
-        // Remove from session/cart
-        $cart = session()->get('cart', []);
-        if (isset($cart[$productId])) {
-            unset($cart[$productId]);
-            session()->put('cart', $cart);
-            return response()->json(['message' => 'Product removed from cart']);
-        }
-        return response()->json(['message' => 'Product not found in cart'], 404);
+        return response()->json([
+            'message' => 'Product removed from cart'
+        ], 200);
     }
 }

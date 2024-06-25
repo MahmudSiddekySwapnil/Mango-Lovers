@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\landingViewController\HomeController;
-use App\Http\Controllers\landingViewController\CartController;
 use App\Http\Controllers\landingViewController\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\landingViewController\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,15 @@ Route::get('/products/{id}', [ProductController::class, 'show']);
 
 
 
-Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
-Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
-Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+//Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+//Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+//Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+
+
+Route::post('/addToCart', [CartController::class, 'addToCart']);
+Route::post('/updateCart', [CartController::class, 'updateCart']);
+Route::post('/clearCart', [CartController::class, 'clearCart']);
+Route::post('/removeFromCart', [CartController::class, 'removeFromCart']);  // Add this route
+
 
