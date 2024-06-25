@@ -88,7 +88,6 @@
 </div>
 
 
-
 <script>
     // Get products from local storage
     function getProductsFromLocalStorage() {
@@ -284,7 +283,7 @@
 
     function getProductsFromLocalStorage() {
         const cartCountElementMobile = document.getElementById('mobile-cart-count');
-        const cartCountElementPC= document.getElementById('pc-cart-count');
+        const cartCountElementPC = document.getElementById('pc-cart-count');
 
         let products = JSON.parse(localStorage.getItem('products')) || [];
         let totalItems = products.length;
