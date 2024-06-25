@@ -119,11 +119,11 @@
 
 <aside class="cart-sidebar">
     <div class="cart-header">
-        <div class="cart-total"><i class="fas fa-shopping-basket"></i><span>total item (0)</span></div>
+        <div class="cart-total"><i class="fas fa-shopping-basket"></i><span>total item ()</span></div>
         <button class="cart-close"><i class="icofont-close"></i></button>
     </div>
     <ul class="cart-list">
-        <!-- Cart items will be dynamically inserted here -->
+{{--        <!-- Cart items will be dynamically inserted here -->--}}
     </ul>
     <div class="cart-footer">
         <button class="coupon-btn">Do you have a coupon code?</button>
@@ -417,19 +417,23 @@
 
 
 <script>
-    // app.js
-
     document.addEventListener('DOMContentLoaded', function() {
-        const cartBtn = document.querySelector('.cart-btn');
+        const cartBtnMobile = document.querySelector('.cart-btn'); // Mobile cart button
+        const cartBtnPC = document.querySelector('.header-cart'); // PC cart button
         const cartSidebar = document.querySelector('.cart-sidebar');
         const cartCloseBtn = document.querySelector('.cart-sidebar .cart-close');
 
-        // Open cart sidebar when cart button is clicked
-        cartBtn.addEventListener('click', function() {
+        // Function to open cart sidebar
+        function openCartSidebar() {
             cartSidebar.classList.add('open');
-            // Call function to fetch cart data and update sidebar here if needed
-            fetchCartData(); // Example function call to fetch cart data
-        });
+            fetchCartData(); // Fetch and update cart data when sidebar opens
+        }
+
+        // Open cart sidebar when cart button is clicked
+        function handleCartButtonClick(event) {
+            event.preventDefault();
+            openCartSidebar();
+        }
 
         // Close cart sidebar when close button is clicked
         cartCloseBtn.addEventListener('click', function() {
@@ -442,7 +446,7 @@
             fetch('/fetch-cart')
                 .then(response => response.json())
                 .then(data => {
-                    updateCartSidebar(data); // Example function to update cart sidebar
+                    updateCartSidebar(data); // Update cart sidebar with fetched data
                 })
                 .catch(error => console.error('Error fetching cart data:', error));
         }
@@ -460,24 +464,24 @@
                 totalAmount += item.quantity * item.Price;
 
                 let cartItemHTML = `
-                <li class="cart-item">
-                    <div class="cart-media"><a href="#"><img src="${item.picture}" alt="product"></a></div>
-                    <div class="cart-info-group">
-                        <div class="cart-info">
-                            <h6><a href="product-single.html">${item.Name}</a></h6>
-                            <p>Unit Price - $${item.Price}</p>
-                        </div>
-                        <div class="cart-action-group">
-                            <div class="product-action">
-                                <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                <input class="action-input" type="text" name="quantity" value="${item.quantity}" readonly>
-                                <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                            </div>
-                            <h6 class="item-total-price">$${(item.quantity * item.Price).toFixed(2)}</h6>
-                        </div>
+            <li class="cart-item">
+                <div class="cart-media"><a href="#"><img src="${item.picture}" alt="product"></a></div>
+                <div class="cart-info-group">
+                    <div class="cart-info">
+                        <h6><a href="product-single.html">${item.Name}</a></h6>
+                        <p>Unit Price - $${item.Price}</p>
                     </div>
-                </li>
-            `;
+                    <div class="cart-action-group">
+                        <div class="product-action">
+                            <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
+                            <input class="action-input" type="text" name="quantity" value="${item.quantity}" readonly>
+                            <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                        </div>
+                        <h6 class="item-total-price">$${(item.quantity * item.Price).toFixed(2)}</h6>
+                    </div>
+                </div>
+            </li>
+        `;
                 cartList.innerHTML += cartItemHTML;
             });
 
@@ -485,7 +489,25 @@
             document.querySelector('.cart-sidebar .cart-total span').textContent = `total item (${totalItems})`;
             document.querySelector('.cart-sidebar .checkout-price').textContent = `$${totalAmount.toFixed(2)}`;
         }
+
+        // Add event listeners based on media queries
+        const mediaQuery = window.matchMedia('(max-width: 768px)');
+        function handleDeviceChange(e) {
+            if (e.matches) {
+                // Mobile device
+                cartBtnMobile.addEventListener('click', handleCartButtonClick);
+            } else {
+                // PC device
+                cartBtnPC.addEventListener('click', handleCartButtonClick);
+            }
+        }
+
+        // Initial check
+        handleDeviceChange(mediaQuery);
+        // Listen for device changes
+        mediaQuery.addListener(handleDeviceChange);
     });
+
 
 </script>
 
