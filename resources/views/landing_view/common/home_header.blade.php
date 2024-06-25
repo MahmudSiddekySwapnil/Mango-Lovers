@@ -52,7 +52,7 @@
 {{--                        class="fas fa-heart"></i><sup>0</sup></a>--}}
                 <button class="header-widget header-cart" title="Cartlist">
                     <i class="fas fa-shopping-basket"></i>
-                    <sup class="cart-count" id="cart-count">0</sup>
+                    <sup class="cart-count" id="cart-ccount">0</sup>
                 </button>
             </div>
         </div>
