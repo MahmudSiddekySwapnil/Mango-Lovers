@@ -114,138 +114,37 @@
         <p>All Rights Reserved by <a href="#">Mango Lovers</a></p>
     </div>
 </aside>
+
+
+
 <aside class="cart-sidebar">
     <div class="cart-header">
-        <div class="cart-total"><i class="fas fa-shopping-basket"></i><span>total item (5)</span></div>
+        <div class="cart-total"><i class="fas fa-shopping-basket"></i><span>total item (0)</span></div>
         <button class="cart-close"><i class="icofont-close"></i></button>
     </div>
     <ul class="cart-list">
-        <li class="cart-item">
-            <div class="cart-media"><a href="#"><img src="front_assets/images/product/01.jpg"
-                                                     alt="product"></a>
-                <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
-            </div>
-            <div class="cart-info-group">
-                <div class="cart-info">
-                    <h6><a href="product-single.html">existing product name</a></h6>
-                    <p>Unit Price - $8.75</p>
-                </div>
-                <div class="cart-action-group">
-                    <div class="product-action">
-                        <button class="action-minus" title="Quantity Minus"><i
-                                class="icofont-minus"></i></button>
-                        <input class="action-input"
-                               title="Quantity Number" type="text" name="quantity" value="1">
-                        <button
-                            class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                    </div>
-                    <h6>$56.98</h6>
-                </div>
-            </div>
-        </li>
-        <li class="cart-item">
-            <div class="cart-media"><a href="#"><img src="front_assets/images/product/02.jpg"
-                                                     alt="product"></a>
-                <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
-            </div>
-            <div class="cart-info-group">
-                <div class="cart-info">
-                    <h6><a href="product-single.html">existing product name</a></h6>
-                    <p>Unit Price - $8.75</p>
-                </div>
-                <div class="cart-action-group">
-                    <div class="product-action">
-                        <button class="action-minus" title="Quantity Minus"><i
-                                class="icofont-minus"></i></button>
-                        <input class="action-input"
-                               title="Quantity Number" type="text" name="quantity" value="1">
-                        <button
-                            class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                    </div>
-                    <h6>$56.98</h6>
-                </div>
-            </div>
-        </li>
-        <li class="cart-item">
-            <div class="cart-media"><a href="#"><img src="front_assets/images/product/03.jpg"
-                                                     alt="product"></a>
-                <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
-            </div>
-            <div class="cart-info-group">
-                <div class="cart-info">
-                    <h6><a href="product-single.html">existing product name</a></h6>
-                    <p>Unit Price - $8.75</p>
-                </div>
-                <div class="cart-action-group">
-                    <div class="product-action">
-                        <button class="action-minus" title="Quantity Minus"><i
-                                class="icofont-minus"></i></button>
-                        <input class="action-input"
-                               title="Quantity Number" type="text" name="quantity" value="1">
-                        <button
-                            class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                    </div>
-                    <h6>$56.98</h6>
-                </div>
-            </div>
-        </li>
-        <li class="cart-item">
-            <div class="cart-media"><a href="#"><img src="front_assets/images/product/04.jpg"
-                                                     alt="product"></a>
-                <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
-            </div>
-            <div class="cart-info-group">
-                <div class="cart-info">
-                    <h6><a href="product-single.html">existing product name</a></h6>
-                    <p>Unit Price - TK:8.75</p>
-                </div>
-                <div class="cart-action-group">
-                    <div class="product-action">
-                        <button class="action-minus" title="Quantity Minus"><i
-                                class="icofont-minus"></i></button>
-                        <input class="action-input"
-                               title="Quantity Number" type="text" name="quantity" value="1">
-                        <button
-                            class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                    </div>
-                    <h6>$56.98</h6>
-                </div>
-            </div>
-        </li>
-        <li class="cart-item">
-            <div class="cart-media"><a href="#"><img src="front_assets/images/product/05.jpg"
-                                                     alt="product"></a>
-                <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
-            </div>
-            <div class="cart-info-group">
-                <div class="cart-info">
-                    <h6><a href="product-single.html">existing product name</a></h6>
-                    <p>Unit Price - TK:8.75</p>
-                </div>
-                <div class="cart-action-group">
-                    <div class="product-action">
-                        <button class="action-minus" title="Quantity Minus"><i
-                                class="icofont-minus"></i></button>
-                        <input class="action-input"
-                               title="Quantity Number" type="text" name="quantity" value="1">
-                        <button
-                            class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                    </div>
-                    <h6>TK:56.98</h6>
-                </div>
-            </div>
-        </li>
+        <!-- Cart items will be dynamically inserted here -->
     </ul>
     <div class="cart-footer">
         <button class="coupon-btn">Do you have a coupon code?</button>
         <form class="coupon-form"><input type="text" placeholder="Enter your coupon code">
-            <button
-                type="submit"><span>apply</span></button>
+            <button type="submit"><span>apply</span></button>
         </form>
-        <a class="cart-checkout-btn" href="checkout.html"><span class="checkout-label">Proceed to
-               Checkout</span><span class="checkout-price">$369.78</span></a>
+        <a class="cart-checkout-btn" href=""><span class="checkout-label">Proceed to Checkout</span><span class="checkout-price">$0.00</span></a>
     </div>
 </aside>
+
+<!-- Assuming there is a cart box element that triggers the cart display -->
+<div class="cart-box"></div>
+
+
+
+
+
+
+
+
+
 <aside class="nav-sidebar">
     <div class="nav-header"><a href="#"><img src="front_assets/images/mango/logo.png" alt="logo"></a>
         <button
@@ -515,6 +414,81 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    // app.js
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartBtn = document.querySelector('.cart-btn');
+        const cartSidebar = document.querySelector('.cart-sidebar');
+        const cartCloseBtn = document.querySelector('.cart-sidebar .cart-close');
+
+        // Open cart sidebar when cart button is clicked
+        cartBtn.addEventListener('click', function() {
+            cartSidebar.classList.add('open');
+            // Call function to fetch cart data and update sidebar here if needed
+            fetchCartData(); // Example function call to fetch cart data
+        });
+
+        // Close cart sidebar when close button is clicked
+        cartCloseBtn.addEventListener('click', function() {
+            cartSidebar.classList.remove('open');
+        });
+
+        // Function to fetch cart data (replace with your actual implementation)
+        function fetchCartData() {
+            // Example AJAX request to fetch cart data and update sidebar
+            fetch('/fetch-cart')
+                .then(response => response.json())
+                .then(data => {
+                    updateCartSidebar(data); // Example function to update cart sidebar
+                })
+                .catch(error => console.error('Error fetching cart data:', error));
+        }
+
+        // Example function to update cart sidebar with fetched data
+        function updateCartSidebar(cartItems) {
+            let cartList = document.querySelector('.cart-sidebar .cart-list');
+            cartList.innerHTML = '';
+
+            let totalItems = 0;
+            let totalAmount = 0;
+
+            cartItems.forEach(item => {
+                totalItems += item.quantity;
+                totalAmount += item.quantity * item.Price;
+
+                let cartItemHTML = `
+                <li class="cart-item">
+                    <div class="cart-media"><a href="#"><img src="${item.picture}" alt="product"></a></div>
+                    <div class="cart-info-group">
+                        <div class="cart-info">
+                            <h6><a href="product-single.html">${item.Name}</a></h6>
+                            <p>Unit Price - $${item.Price}</p>
+                        </div>
+                        <div class="cart-action-group">
+                            <div class="product-action">
+                                <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
+                                <input class="action-input" type="text" name="quantity" value="${item.quantity}" readonly>
+                                <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                            </div>
+                            <h6 class="item-total-price">$${(item.quantity * item.Price).toFixed(2)}</h6>
+                        </div>
+                    </div>
+                </li>
+            `;
+                cartList.innerHTML += cartItemHTML;
+            });
+
+            // Update total items and total amount in the cart sidebar
+            document.querySelector('.cart-sidebar .cart-total span').textContent = `total item (${totalItems})`;
+            document.querySelector('.cart-sidebar .checkout-price').textContent = `$${totalAmount.toFixed(2)}`;
+        }
+    });
+
+</script>
+
 <script>
 
     // Get elements start

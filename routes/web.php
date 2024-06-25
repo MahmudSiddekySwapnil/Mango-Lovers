@@ -39,5 +39,5 @@ Route::post('/addToCart', [CartController::class, 'addToCart']);
 Route::post('/updateCart', [CartController::class, 'updateCart']);
 Route::post('/clearCart', [CartController::class, 'clearCart']);
 Route::post('/removeFromCart', [CartController::class, 'removeFromCart']);  // Add this route
-
+Route::get('/fetch-cart', [CartController::class, 'fetchCart'])->name('fetch.cart');
 

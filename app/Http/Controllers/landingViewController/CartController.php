@@ -183,4 +183,29 @@ class CartController extends Controller
             'message' => 'Product removed from cart'
         ], 200);
     }
+
+
+    public function fetchCart(Request $request)
+    {
+        $sessionId = $request->session()->getId(); // Get session ID
+
+        $cartItems = DB::table('Carts')
+            ->leftJoin('Products', 'Carts.sku', '=', 'Products.sku')
+            ->where('Carts.session_id', $sessionId)
+            ->select('Carts.*', 'Products.*') // Select columns you need from both tables
+            ->get();
+
+        return response()->json($cartItems);
+    }
+
+//    public function updateFinalCart(Request $request)
+//    {
+//        $cartItem = DB::table('Carts')->where('user_id', Auth::id())->where('id', $request->id)->first();
+//        if ($cartItem) {
+//            $cartItem->quantity = $request->quantity;
+//            $cartItem->save();
+//        }
+//
+//        return response()->json($cartItem);
+//    }
 }
