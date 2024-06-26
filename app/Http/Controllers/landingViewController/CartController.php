@@ -126,6 +126,7 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
+
         $sessionId = $request->session()->getId();
         $product = $request->only(['sku', 'quantity', 'price', 'totalPrice']);
 
@@ -170,6 +171,7 @@ class CartController extends Controller
 
     public function removeFromCart(Request $request)
     {
+
         $sessionId = $request->session()->getId();
         $sku = $request->input('sku');
 
