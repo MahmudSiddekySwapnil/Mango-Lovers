@@ -10,4 +10,5 @@ class Products extends Model
     protected $table = 'Products';
     public $timestamps = true;
     use HasFactory;
+
 }

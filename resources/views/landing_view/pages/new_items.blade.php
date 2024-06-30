@@ -1,5 +1,3 @@
-<meta name="csrf-token" content="{{ csrf_token() }}">
-
 <section class="section newitem-part">
     <div class="container">
         <div class="row">
@@ -65,7 +63,6 @@
 
     </div>
 </section>
-
 <section class="section promo-part">
     <div class="container">
         <div class="row">
@@ -77,221 +74,214 @@
         </div>
     </div>
 </section>
+{{--<script src="front_assets/js/cart.js"></script>--}}
 
 
-<div class="mobile-menu">
-    <a href="index.html" title="Home Page"><i class="fas fa-home"></i><span>Home</span></a>
-    <button class="cate-btn" title="Category List"><i class="fas fa-list"></i><span>category</span></button>
-    <button class="cart-btn" title="Cartlist"><i class="fas fa-shopping-basket"></i><span>cartlist</span><sup class="cart-count" id="mobile-cart-count">0</sup></button>
-{{--    <a href="wishlist.html" title="Wishlist"><i class="fas fa-heart"></i><span>wishlist</span><sup>0</sup></a>--}}
-{{--    <a href="compare.html" title="Compare List"><i class="fas fa-random"></i><span>compare</span><sup>0</sup></a>--}}
-</div>
+
+{{--<script>--}}
+{{--    // Get products from local storage--}}
+{{--    function getProductsFromLocalStorage() {--}}
+{{--        const cartCountElement = document.getElementById('cart-count');--}}
+{{--        let product = JSON.parse(localStorage.getItem('products')) || [];--}}
+{{--        let totalItems = product.length;--}}
+{{--        cartCountElement.textContent = totalItems.toString();--}}
+{{--        return product;--}}
+{{--    }--}}
+
+{{--    // Save products to local storage--}}
+{{--    function saveProductsToLocalStorage(products) {--}}
+{{--        localStorage.setItem('products', JSON.stringify(products));--}}
+{{--    }--}}
+
+{{--    // Add product to cart--}}
+{{--    async function addToCart(sku, price) {--}}
+{{--        let products = getProductsFromLocalStorage();--}}
+{{--        let product = products.find(p => p.sku === sku);--}}
+
+{{--        if (product) {--}}
+{{--            product.quantity += 1;--}}
+{{--            product.totalPrice = product.quantity * product.price;--}}
+{{--        } else {--}}
+{{--            product = {sku: sku, quantity: 1, price: price, totalPrice: price};--}}
+{{--            products.push(product);--}}
+{{--        }--}}
+
+{{--        saveProductsToLocalStorage(products);--}}
+{{--        updateUI(sku);--}}
+
+{{--        // Send product data to the server--}}
+{{--        try {--}}
+{{--            const response = await fetch('/addToCart', {--}}
+{{--                method: 'POST',--}}
+{{--                headers: {--}}
+{{--                    'Content-Type': 'application/json',--}}
+{{--                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')--}}
+{{--                },--}}
+{{--                body: JSON.stringify(product)--}}
+{{--            });--}}
+
+{{--            if (!response.ok) {--}}
+{{--                throw new Error('Network response was not ok');--}}
+{{--            }--}}
+
+{{--            const data = await response.json();--}}
+{{--            console.log('Product added to cart on server:', data);--}}
+{{--        } catch (error) {--}}
+{{--            console.error('Error adding product to cart on server:', error);--}}
+{{--        }--}}
+{{--    }--}}
+
+{{--    // Update product quantity--}}
+{{--    async function updateQuantity(sku, delta) {--}}
+{{--        let products = getProductsFromLocalStorage();--}}
+{{--        let productIndex = products.findIndex(p => p.sku === sku);--}}
+
+{{--        if (productIndex !== -1) {--}}
+{{--            products[productIndex].quantity += delta;--}}
+
+{{--            if (products[productIndex].quantity <= 0) {--}}
+{{--                // Send request to remove product from the server--}}
+{{--                try {--}}
+{{--                    const response = await fetch('/removeFromCart', {--}}
+{{--                        method: 'POST',--}}
+{{--                        headers: {--}}
+{{--                            'Content-Type': 'application/json',--}}
+{{--                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')--}}
+{{--                        },--}}
+{{--                        body: JSON.stringify({sku: products[productIndex].sku})--}}
+{{--                    });--}}
+
+{{--                    if (!response.ok) {--}}
+{{--                        throw new Error('Network response was not ok');--}}
+{{--                    }--}}
+
+{{--                    const data = await response.json();--}}
+{{--                    console.log('Product removed from server:', data);--}}
+
+{{--                    // Remove product from local storage after successful server response--}}
+{{--                    products.splice(productIndex, 1);--}}
+{{--                    saveProductsToLocalStorage(products);--}}
+{{--                    updateUI(sku);--}}
+{{--                } catch (error) {--}}
+{{--                    console.error('Error removing product from server:', error);--}}
+{{--                }--}}
+{{--            } else {--}}
+{{--                products[productIndex].totalPrice = (products[productIndex].price * products[productIndex].quantity).toFixed(2);--}}
+{{--                saveProductsToLocalStorage(products);--}}
+{{--                updateUI(sku);--}}
+
+{{--                // Send updated product data to the server--}}
+{{--                try {--}}
+{{--                    const response = await fetch('/updateCart', {--}}
+{{--                        method: 'POST',--}}
+{{--                        headers: {--}}
+{{--                            'Content-Type': 'application/json',--}}
+{{--                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')--}}
+{{--                        },--}}
+{{--                        body: JSON.stringify(products[productIndex])--}}
+{{--                    });--}}
+
+{{--                    if (!response.ok) {--}}
+{{--                        throw new Error('Network response was not ok');--}}
+{{--                    }--}}
+
+{{--                    const data = await response.json();--}}
+{{--                    console.log('Product quantity updated on server:', data);--}}
+{{--                } catch (error) {--}}
+{{--                    console.error('Error updating product quantity on server:', error);--}}
+{{--                }--}}
+{{--            }--}}
+
+{{--            // If the cart is empty, send a request to clear the cart in the database--}}
+{{--            if (products.length === 0) {--}}
+{{--                try {--}}
+{{--                    const response = await fetch('/clearCart', {--}}
+{{--                        method: 'POST',--}}
+{{--                        headers: {--}}
+{{--                            'Content-Type': 'application/json',--}}
+{{--                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')--}}
+{{--                        }--}}
+{{--                    });--}}
+
+{{--                    if (!response.ok) {--}}
+{{--                        throw new Error('Network response was not ok');--}}
+{{--                    }--}}
+
+{{--                    const data = await response.json();--}}
+{{--                    console.log('Cart cleared on server:', data);--}}
+{{--                } catch (error) {--}}
+{{--                    console.error('Error clearing cart on server:', error);--}}
+{{--                }--}}
+{{--            }--}}
+{{--        }--}}
+{{--    }--}}
+
+{{--    // Update UI--}}
+{{--    function updateUI(sku) {--}}
+{{--        let products = getProductsFromLocalStorage();--}}
+{{--        let product = products.find(p => p.sku === sku);--}}
+{{--        let quantity = product ? product.quantity : 0;--}}
+
+{{--        let addButton = document.querySelector(`button.product-add[data-id="${sku}"]`);--}}
+{{--        let productAction = addButton.closest('.product-item').querySelector('.product-action');--}}
+{{--        let inputField = productAction.querySelector(`input[data-sku="${sku}"]`);--}}
+
+{{--        if (quantity > 0) {--}}
+{{--            addButton.style.display = 'none';--}}
+{{--            productAction.style.display = 'flex';--}}
+{{--            inputField.value = quantity;--}}
+{{--        } else {--}}
+{{--            addButton.style.display = 'block';--}}
+{{--            productAction.style.display = 'none';--}}
+{{--            inputField.value = 0;--}}
+{{--        }--}}
+{{--    }--}}
+
+{{--    // Event listeners for add, plus, and minus buttons--}}
+{{--    document.addEventListener('click', function (event) {--}}
+{{--        if (event.target.closest('.product-add')) {--}}
+{{--            let sku = event.target.closest('.product-add').getAttribute('data-id');--}}
+{{--            let price = event.target.closest('.product-add').getAttribute('data-price');--}}
+{{--            addToCart(sku, price);--}}
+{{--        }--}}
+
+{{--        if (event.target.closest('.action-plus')) {--}}
+{{--            let sku = event.target.closest('.product-action').querySelector('input').getAttribute('data-sku');--}}
+{{--            updateQuantity(sku, 1);--}}
+{{--        }--}}
+
+{{--        if (event.target.closest('.aminus')) {--}}
+{{--            let sku = event.target.closest('.product-action').querySelector('input').getAttribute('data-sku');--}}
+{{--            updateQuantity(sku, -1);--}}
+{{--        }--}}
+{{--    });--}}
+
+{{--    // Initialize UI based on local storage data--}}
+{{--    document.addEventListener('DOMContentLoaded', function () {--}}
+{{--        let products = getProductsFromLocalStorage();--}}
+{{--        products.forEach(product => {--}}
+{{--            updateUI(product.sku);--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
 
 
-<script>
-    // Get products from local storage
-    function getProductsFromLocalStorage() {
-        const cartCountElement = document.getElementById('cart-count');
-        let product = JSON.parse(localStorage.getItem('products')) || [];
-        let totalItems = product.length;
-        cartCountElement.textContent = totalItems.toString();
-        return product;
-    }
+{{--<script>--}}
+{{--    document.addEventListener('DOMContentLoaded', () => {--}}
+{{--        getProductsFromLocalStorage();--}}
+{{--    });--}}
 
-    // Save products to local storage
-    function saveProductsToLocalStorage(products) {
-        localStorage.setItem('products', JSON.stringify(products));
-    }
+{{--    function getProductsFromLocalStorage() {--}}
+{{--        const cartCountElementMobile = document.getElementById('mobile-cart-count');--}}
+{{--        const cartCountElementPC = document.getElementById('pc-cart-count');--}}
 
-    // Add product to cart
-    async function addToCart(sku, price) {
-        let products = getProductsFromLocalStorage();
-        let product = products.find(p => p.sku === sku);
-
-        if (product) {
-            product.quantity += 1;
-            product.totalPrice = product.quantity * product.price;
-        } else {
-            product = {sku: sku, quantity: 1, price: price, totalPrice: price};
-            products.push(product);
-        }
-
-        saveProductsToLocalStorage(products);
-        updateUI(sku);
-
-        // Send product data to the server
-        try {
-            const response = await fetch('/addToCart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                },
-                body: JSON.stringify(product)
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            console.log('Product added to cart on server:', data);
-        } catch (error) {
-            console.error('Error adding product to cart on server:', error);
-        }
-    }
-
-    // Update product quantity
-    async function updateQuantity(sku, delta) {
-        let products = getProductsFromLocalStorage();
-        let productIndex = products.findIndex(p => p.sku === sku);
-
-        if (productIndex !== -1) {
-            products[productIndex].quantity += delta;
-
-            if (products[productIndex].quantity <= 0) {
-                // Send request to remove product from the server
-                try {
-                    const response = await fetch('/removeFromCart', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        },
-                        body: JSON.stringify({sku: products[productIndex].sku})
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-
-                    const data = await response.json();
-                    console.log('Product removed from server:', data);
-
-                    // Remove product from local storage after successful server response
-                    products.splice(productIndex, 1);
-                    saveProductsToLocalStorage(products);
-                    updateUI(sku);
-                } catch (error) {
-                    console.error('Error removing product from server:', error);
-                }
-            } else {
-                products[productIndex].totalPrice = (products[productIndex].price * products[productIndex].quantity).toFixed(2);
-                saveProductsToLocalStorage(products);
-                updateUI(sku);
-
-                // Send updated product data to the server
-                try {
-                    const response = await fetch('/updateCart', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        },
-                        body: JSON.stringify(products[productIndex])
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-
-                    const data = await response.json();
-                    console.log('Product quantity updated on server:', data);
-                } catch (error) {
-                    console.error('Error updating product quantity on server:', error);
-                }
-            }
-
-            // If the cart is empty, send a request to clear the cart in the database
-            if (products.length === 0) {
-                try {
-                    const response = await fetch('/clearCart', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        }
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-
-                    const data = await response.json();
-                    console.log('Cart cleared on server:', data);
-                } catch (error) {
-                    console.error('Error clearing cart on server:', error);
-                }
-            }
-        }
-    }
-
-    // Update UI
-    function updateUI(sku) {
-        let products = getProductsFromLocalStorage();
-        let product = products.find(p => p.sku === sku);
-        let quantity = product ? product.quantity : 0;
-
-        let addButton = document.querySelector(`button.product-add[data-id="${sku}"]`);
-        let productAction = addButton.closest('.product-item').querySelector('.product-action');
-        let inputField = productAction.querySelector(`input[data-sku="${sku}"]`);
-
-        if (quantity > 0) {
-            addButton.style.display = 'none';
-            productAction.style.display = 'flex';
-            inputField.value = quantity;
-        } else {
-            addButton.style.display = 'block';
-            productAction.style.display = 'none';
-            inputField.value = 0;
-        }
-    }
-
-    // Event listeners for add, plus, and minus buttons
-    document.addEventListener('click', function (event) {
-        if (event.target.closest('.product-add')) {
-            let sku = event.target.closest('.product-add').getAttribute('data-id');
-            let price = event.target.closest('.product-add').getAttribute('data-price');
-            addToCart(sku, price);
-        }
-
-        if (event.target.closest('.action-plus')) {
-            let sku = event.target.closest('.product-action').querySelector('input').getAttribute('data-sku');
-            updateQuantity(sku, 1);
-        }
-
-        if (event.target.closest('.aminus')) {
-            let sku = event.target.closest('.product-action').querySelector('input').getAttribute('data-sku');
-            updateQuantity(sku, -1);
-        }
-    });
-
-    // Initialize UI based on local storage data
-    document.addEventListener('DOMContentLoaded', function () {
-        let products = getProductsFromLocalStorage();
-        products.forEach(product => {
-            updateUI(product.sku);
-        });
-    });
-</script>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        getProductsFromLocalStorage();
-    });
-
-    function getProductsFromLocalStorage() {
-        const cartCountElementMobile = document.getElementById('mobile-cart-count');
-        const cartCountElementPC = document.getElementById('pc-cart-count');
-
-        let products = JSON.parse(localStorage.getItem('products')) || [];
-        let totalItems = products.length;
-        cartCountElementMobile.textContent = totalItems.toString();
-        cartCountElementPC.textContent = totalItems.toString();
-        return products;
-    }
-</script>
+{{--        let products = JSON.parse(localStorage.getItem('products')) || [];--}}
+{{--        let totalItems = products.length;--}}
+{{--        cartCountElementMobile.textContent = totalItems.toString();--}}
+{{--        cartCountElementPC.textContent = totalItems.toString();--}}
+{{--        return products;--}}
+{{--    }--}}
+{{--</script>--}}
 
 {{--<script>--}}
 {{--    document.addEventListener('DOMContentLoaded', function () {--}}

@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\landingViewController\HomeController;
+use App\Http\Controllers\landingViewController\OrderController;
 use App\Http\Controllers\landingViewController\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\landingViewController\CartController;
+use App\Http\Controllers\landingViewController\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,7 @@ Route::get('/user_register',[HomeController::class,'userRegister'])->name('user_
 Route::post('/user_registration_process',[HomeController::class,'userRegistrationProcess'])->name('user_registration_process');
 Route::post('/user_login_process',[HomeController::class,'userLoginProcess'])->name('user_login_process');
 Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout');
 
 
 
@@ -40,4 +43,8 @@ Route::post('/updateCart', [CartController::class, 'updateCart']);
 Route::post('/clearCart', [CartController::class, 'clearCart']);
 Route::post('/removeFromCart', [CartController::class, 'removeFromCart']);  // Add this route
 Route::get('/fetch-cart', [CartController::class, 'fetchCart'])->name('fetch.cart');
+//Route::get('/order-confirmation/{order_id}/', [OrderController::class, 'orderConfirmation'])->name('order.confirmation');
+Route::get('download/invoice/{id}', [OrderController::class,'downloadInvoice'])->name('download.invoice');
+Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('place.order');
 
+Route::get('/order-confirmation', [OrderController::class, 'orderConfirmation'])->name('order.confirmation');
