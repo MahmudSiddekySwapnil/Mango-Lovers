@@ -64,6 +64,10 @@ class OrderController extends Controller
             'default_font' => 'nikosh',
         ]);
 
+        // Set the watermark text
+        $mpdf->SetWatermarkText('MangoLovers', 0.1); // Second parameter is the opacity
+        $mpdf->showWatermarkText = true;
+
         // Write the view's content to the PDF
         $mpdf->WriteHTML($view);
 
