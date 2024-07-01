@@ -142,28 +142,28 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            fetchCartItems();
+<script>
+    $(document).ready(function() {
+        fetchCartItems();
 
-            function fetchCartItems() {
-                $.ajax({
-                    url: '{{ route("fetch.cart") }}',
-                    method: 'GET',
-                    success: function(data) {
-                        console.log(data); // Debugging: log the returned data to the console
-                        let productDetails = $('#checkout-product-details');
-                        let totalPrice = 0;
+        function fetchCartItems() {
+            $.ajax({
+                url: '{{ route("fetch.cart") }}',
+                method: 'GET',
+                success: function(data) {
+                    console.log(data); // Debugging: log the returned data to the console
+                    let productDetails = $('#checkout-product-details');
+                    let totalPrice = 0;
 
-                        productDetails.empty(); // Clear existing content
+                    productDetails.empty(); // Clear existing content
 
-                        if (data.length === 0) {
-                            productDetails.append('<div>No items in the cart.</div>');
-                        } else {
-                            data.forEach(function(item) {
-                                let price = Number(item.price); // Convert to number if necessary
-                                let total_price = Number(item.total_price);
-                                let product = `
+                    if (data.length === 0) {
+                        productDetails.append('<div>No items in the cart.</div>');
+                    } else {
+                        data.forEach(function(item) {
+                            let price = Number(item.price); // Convert to number if necessary
+                            let total_price = Number(item.total_price);
+                            let product = `
                             <div class="checkout-product">
                                 <img class="checkout-product-image" src="${item.picture}" alt="Product Image">
                                 <div class="checkout-product-info">
@@ -173,73 +173,75 @@
                                 </div>
                             </div>
                         `;
-                                productDetails.append(product);
-                                totalPrice += price * item.quantity; // Accumulate total price correctly
+                            productDetails.append(product);
+                            totalPrice += price * item.quantity; // Accumulate total price correctly
 
-                                console.log(`Item: ${item.Name}, Quantity: ${item.quantity}, Price: Tk ${price.toFixed(2)}, Total Price So Far: Tk ${totalPrice.toFixed(2)}`);
-                            });
-                        }
-
-                        console.log(`Final Total Price: Tk ${totalPrice.toFixed(2)}`);
-                        $('#checkout-total-price').html(`<div><strong>Total Price: Tk ${totalPrice.toFixed(2)}</strong></div>`);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error fetching cart items: ", status, error); // Debugging: log errors to the console
+                            console.log(`Item: ${item.Name}, Quantity: ${item.quantity}, Price: Tk ${price.toFixed(2)}, Total Price So Far: Tk ${totalPrice.toFixed(2)}`);
+                        });
                     }
-                });
+
+                    console.log(`Final Total Price: Tk ${totalPrice.toFixed(2)}`);
+                    $('#checkout-total-price').html(`<div><strong>Total Price: Tk ${totalPrice.toFixed(2)}</strong></div>`);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching cart items: ", status, error); // Debugging: log errors to the console
+                }
+            });
+        }
+    });
+
+    $(document).ready(function() {
+        // Set up CSRF token for all AJAX requests
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
-        $(document).ready(function() {
-            // Set up CSRF token for all AJAX requests
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        // Attach event listener to the form submission
+        $('#checkout-form').on('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Collect form data into a FormData object
+            let formData = new FormData(this);
+            // Get cart items from local storage
+            let cartItems = JSON.parse(localStorage.getItem('products')) || [];
+            console.log(cartItems);
+            // Append each cart item to the FormData object
+            cartItems.forEach((item, index) => {
+                formData.append(`cart_items[${index}][id]`, item.sku);
+                formData.append(`cart_items[${index}][price]`, item.price);
+                formData.append(`cart_items[${index}][quantity]`, item.quantity);
+            });
+
+            // Convert formData to a plain object for debugging
+            let formDataObject = {};
+            formData.forEach((value, key) => {
+                formDataObject[key] = value;
+            });
+            console.log('Form Data Sent:', formDataObject); // Debugging: log the form data to the console
+
+            // Send form data to the server
+            $.ajax({
+                url: '{{ route("place.order") }}',
+                method: 'POST',
+                processData: false, // Don't process the data
+                contentType: false, // Don't set content type
+                data: formData,
+                success: function(response) {
+                    // Clear local storage after successful order placement
+                    localStorage.removeItem('products');
+
+                    // On successful order placement, redirect to confirmation page
+                    window.location.href = '/order-confirmation?order_id=' + response.order_id;
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error placing order: ", status, error);
+                    console.error(xhr.responseJSON); // Debugging: log the error response to the console
                 }
             });
-
-            // Attach event listener to the form submission
-            $('#checkout-form').on('submit', function(e) {
-                e.preventDefault(); // Prevent default form submission
-
-                // Collect form data into a FormData object
-                let formData = new FormData(this);
-                // Get cart items from local storage
-                let cartItems = JSON.parse(localStorage.getItem('products')) || [];
-                 console.log(cartItems);
-                // Append each cart item to the FormData object
-                cartItems.forEach((item, index) => {
-                    formData.append(`cart_items[${index}][id]`, item.sku);
-                    formData.append(`cart_items[${index}][price]`, item.price);
-                    formData.append(`cart_items[${index}][quantity]`, item.quantity);
-                });
-
-                // Convert formData to a plain object for debugging
-                let formDataObject = {};
-                formData.forEach((value, key) => {
-                    formDataObject[key] = value;
-                });
-                console.log('Form Data Sent:', formDataObject); // Debugging: log the form data to the console
-
-                // Send form data to the server
-                $.ajax({
-                    url: '{{ route("place.order") }}',
-                    method: 'POST',
-                    processData: false, // Don't process the data
-                    contentType: false, // Don't set content type
-                    data: formData,
-                    success: function(response) {
-                        // On successful order placement, redirect to confirmation page
-                        window.location.href = '/order-confirmation?order_id=' + response.order_id;
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error placing order: ", status, error);
-                        console.error(xhr.responseJSON); // Debugging: log the error response to the console
-                    }
-                });
-            });
         });
+    });
 
-
-    </script>
+</script>
 @endsection

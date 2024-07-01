@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\landingViewController;
 
 use App\Http\Controllers\Controller;
+use App\Models\LandingModel\Carts;
 use App\Models\LandingModel\Orders;
 use App\Models\LandingModel\OrderItems;
 use Illuminate\Http\Request;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Mpdf\Mpdf;
+use Illuminate\Support\Facades\Session;
+
 class OrderController extends Controller
 {
     //
@@ -90,7 +93,7 @@ class OrderController extends Controller
             'cart_items.*.price' => 'required|numeric',
             'cart_items.*.quantity' => 'required|',
         ]);
-
+        $userId = Session::get('userid');
         // Calculate total price
         $totalPrice = 0;
         foreach ($validatedData['cart_items'] as $item) {
@@ -101,6 +104,7 @@ class OrderController extends Controller
         $order = new Orders();
         $UUID=date('YmdHis') . '-' . Str::random(5);
         $order->orderid = $UUID;
+        $order->userid=$userId;
         $order->receiver_name = $validatedData['receiver_name'];
         $order->phone_number = $validatedData['phone_number'];
         $order->address = $validatedData['address'];
@@ -112,6 +116,7 @@ class OrderController extends Controller
         // Create order items
         foreach ($validatedData['cart_items'] as $item) {
             $orderItem = new OrderItems();
+            $orderItem->Userid=$userId;
             $orderItem->order_id = $UUID;
             $orderItem->product_id = $item['id'];
             $orderItem->quantity = $item['quantity'];
@@ -119,6 +124,8 @@ class OrderController extends Controller
             $orderItem->total_price = $item['price'] * $item['quantity'];
             $orderItem->save();
         }
+        // Clear the cart for the current user
+        Carts::where('Userid', $userId)->delete();
 
         // Return response with order ID
         return response()->json(['order_id' => $order->id]);

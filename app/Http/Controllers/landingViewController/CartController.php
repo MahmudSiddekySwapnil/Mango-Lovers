@@ -4,6 +4,7 @@ namespace App\Http\Controllers\landingViewController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -87,11 +88,16 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $sessionId = $request->session()->getId();
+        $userId = Auth::id(); // Get the logged-in user ID, if available
         $product = $request->only(['sku', 'quantity', 'price', 'totalPrice']);
+
+        // Determine whether to use the session ID or user ID
+        $identifier = $userId ? $userId : $sessionId;
+        $identifierColumn = $userId ? 'user_id' : 'session_id';
 
         // Check if the product is already in the cart
         $existingProduct = DB::table('Carts')
-            ->where('session_id', $sessionId)
+            ->where($identifierColumn, $identifier)
             ->where('sku', $product['sku'])
             ->first();
 
@@ -102,15 +108,18 @@ class CartController extends Controller
                 ->update([
                     'quantity' => $existingProduct->quantity + $product['quantity'],
                     'total_price' => ($existingProduct->quantity + $product['quantity']) * $product['price'],
+                    'updated_at' => now(),
                 ]);
         } else {
             // Insert a new product
+            $userId = Session::get('userid');
             DB::table('Carts')->insert([
-                'session_id' => $sessionId,
+                $identifierColumn => $identifier,
                 'sku' => $product['sku'],
                 'quantity' => $product['quantity'],
                 'price' => $product['price'],
                 'total_price' => $product['totalPrice'],
+                'Userid' => $userId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -121,6 +130,7 @@ class CartController extends Controller
             'product' => $product,
         ], 200);
     }
+
 
 
 

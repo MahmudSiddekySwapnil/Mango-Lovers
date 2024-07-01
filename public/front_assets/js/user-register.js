@@ -1,4 +1,4 @@
-document.getElementById('user-form').addEventListener('submit', async function(event) {
+document.getElementById('user-form').addEventListener('submit', async function (event) {
     event.preventDefault(); // Prevent the default form submission
 
     const form = event.target;
@@ -30,6 +30,9 @@ document.getElementById('user-form').addEventListener('submit', async function(e
                     title: 'Form submitted successfully!',
                     showConfirmButton: false,
                     timer: 1500 // Automatically close the alert after 1.5 seconds
+                }).then(() => {
+                    // Redirect to the login page after the alert closes
+                    window.location.href = '/user_login';
                 });
             } else {
                 Swal.fire({
