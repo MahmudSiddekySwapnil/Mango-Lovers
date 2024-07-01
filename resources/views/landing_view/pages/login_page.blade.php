@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="template" content="greeny">
-    <meta name="title" content="greeny - Ecommerce Food Store HTML Template">
-    <meta name="keywords" content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online">
+    <meta name="template" content="MangoLovers">
+    <meta name="title" content="MangoLovers - Ecommerce Food Store HTML Template">
+    <meta name="keywords" content="MangoLovers, organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online">
     <title>Greeny - Login</title>
     <link rel="icon" href="front_assets/images/favicon.png">
     <link rel="stylesheet" href="front_assets/fonts/flaticon/flaticon.css">
@@ -79,7 +79,7 @@
                     </p>
                 </div>
                 <div class="user-form-footer">
-                    <p>Greeny | &COPY; Copyright by <a href="#">Mango Lovers</a>
+                    <p>&COPY; Copyright by <a href="#">Mango Lovers</a>
                     </p>
                 </div>
             </div>

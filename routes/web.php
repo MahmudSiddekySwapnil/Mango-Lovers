@@ -19,7 +19,6 @@ use App\Http\Controllers\landingViewController\CheckoutController;
 */
 Route::get('/',[HomeController::class,'home'])->name('home');
 Route::get('/dashboard',[HomeController::class,'home'])->name('home');
-Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/user_login',[HomeController::class,'userLogin'])->name('user_login');
 Route::get('/user_register',[HomeController::class,'userRegister'])->name('user_register');
 Route::post('/user_registration_process',[HomeController::class,'userRegistrationProcess'])->name('user_registration_process');
@@ -50,5 +49,6 @@ Route::middleware(['user_auth'])->group(function () {
     Route::get('download/invoice/{id}', [OrderController::class,'downloadInvoice'])->name('download.invoice');
     Route::get('/order-confirmation', [OrderController::class, 'orderConfirmation'])->name('order.confirmation');
     Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout');
+    Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 });

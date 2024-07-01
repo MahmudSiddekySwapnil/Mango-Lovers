@@ -130,7 +130,7 @@
                     <sup class="cart-count" id="pc-cart-count">0</sup>
                 </button>
                 <div class="mobile-menu">
-                    <a href="index.html" title="Home Page"><i class="fas fa-home"></i><span>Home</span></a>
+                    <a href="{{route('home')}}" title="Home Page"><i class="fas fa-home"></i><span>Home</span></a>
                     <button class="cate-btn" title="Category List"><i class="fas fa-list"></i><span>category</span></button>
                     <button class="cart-btn" title="Cartlist">
                         <i class="fas fa-shopping-basket"></i><span>cartlist</span>
