@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -34,14 +35,12 @@ class HomeController extends Controller
     public function userRegistrationProcess(Request $request)
     {
         try {
-            // Validate the incoming request data
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:Users,email',
-                'phone' => 'required|string|max:15',
-                'password' => 'required',
+                'phone' => 'required|string|max:20',  // Adjusted to allow for special characters
+                'password' => 'required',  // Ensure password meets minimum length
             ]);
-
             // Create a new user instance and set its properties
             $user = new Users();
             $user->Username = $validatedData['name'];
@@ -55,7 +54,8 @@ class HomeController extends Controller
 //                Auth::login($user);
 
                 // Save the authenticated user's ID
-                $user->userid = Auth::id();
+                $UserID=Str::random(5);
+                $user->userid =$user->id;
                 $user->save();
 
                 return response()->json(['success' => true, 'user_id' => Auth::id()]);
