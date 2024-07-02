@@ -38,13 +38,13 @@ class AdminController extends Controller
             $inputPassword = $request->password;
             if (Hash::check($inputPassword, $data->password)) {
                 $request->session()->put('ADMIN_LOGIN',true);
-                return response()->json(['auth_message' => 'successful', 'url' => 'dashboard']);
+                return response()->json(['auth_message' => 'successful', 'url' => 'admin_dashboard']);
 
             } else {
-                return response()->json(['auth_message' => 'authFailed', 'url' => 'login']);
+                return response()->json(['auth_message' => 'authFailed', 'url' => 'admin_login']);
             }
         } else {
-            return response()->json(['auth_message' => 'Email Not Found', 'url' => 'login']);
+            return response()->json(['auth_message' => 'Email Not Found', 'url' => 'admin_login']);
         }
     }
 
@@ -56,7 +56,7 @@ class AdminController extends Controller
      */
     public  function adminLogout(Request $request){
         session()->flush();
-        return redirect('login');
+        return redirect('admin_login');
     }
 
 }

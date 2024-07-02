@@ -21,7 +21,7 @@ class AdminAuthenticate
         }
         else{
             $request->session()->flash('error','ACCESS DENIED');
-            return redirect('login');
+            return redirect('admin_logout');
         }
         return $next($request);
     }
