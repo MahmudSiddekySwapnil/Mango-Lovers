@@ -66,7 +66,7 @@ Route::middleware(['user_auth'])->group(function () {
 //admin
 Route::get('/login',[AdminController::class,'index'])->name('login');
 Route::post('/user_auth_data',[AdminController::class,'authData'])->name('login');
-Route::get('/logout',[AdminController::class,'adminLogout'])->name('logout');
+Route::get('/admin_logout',[AdminController::class,'adminLogout'])->name('logout');
 
 Route::middleware(['admin_auth'])->group(function () {
 Route::get('/dashboard', [AdminController::class,'adminDashboard'])->name('dashboard');
