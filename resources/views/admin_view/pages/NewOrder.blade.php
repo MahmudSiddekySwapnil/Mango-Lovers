@@ -85,16 +85,18 @@
                     { "data": "city" },
                     { "data": "total_price" },
                     {
-                        data: null,
+                        data: "status",
                         render: function (data, type, row) {
-                            var status = row.status;
-                            let cell_content1 = null;
+                            // Convert data to integer
+                            var status = parseInt(data, 10);
+
+                            let cell_content = null;
                             if (status === 0) {
-                                cell_content1 = '<button class="btn btn-danger btn-sm" data-order-id="' + row.orderid + '">Old Order</button>';
+                                cell_content = '<button class="btn btn-danger btn-sm" data-order-id="' + row.orderid + '">Old Order</button>';
                             } else {
-                                cell_content1 = '<button class="btn btn-primary btn-sm update-status-btn" data-order-id="' + row.orderid + '">New Order</button>';
+                                cell_content = '<button class="btn btn-primary btn-sm update-status-btn" data-order-id="' + row.orderid + '">New Order</button>';
                             }
-                            return cell_content1;
+                            return cell_content;
                         }
                     },
                     {
