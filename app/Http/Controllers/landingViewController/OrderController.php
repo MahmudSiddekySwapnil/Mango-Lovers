@@ -111,6 +111,7 @@ class OrderController extends Controller
         $order->district = $validatedData['district'];
         $order->city = $validatedData['city'];
         $order->total_price = $totalPrice;
+        $order->status = 1;
         $order->save();
 
         // Create order items
@@ -129,6 +130,24 @@ class OrderController extends Controller
 
         // Return response with order ID
         return response()->json(['order_id' => $order->id]);
+    }
+
+
+    public function updateStatus($id)
+    {
+        // Find the order by ID
+        $order = Orders::where('orderid', $id)->first();
+
+        if (!$order) {
+            return response()->json(['error' => 'Order not found'], 404);
+        }
+
+        // Update the status
+        $order->status = 0; // Assuming 0 means "Old Order"
+        $order->save();
+
+        // You can return a response as needed
+        return response()->json(['message' => 'Order status updated successfully']);
     }
 
 }

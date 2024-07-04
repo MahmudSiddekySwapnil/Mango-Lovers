@@ -71,9 +71,10 @@ Route::get('/admin_logout',[AdminController::class,'adminLogout'])->name('admin_
 Route::middleware(['admin_auth'])->group(function () {
 Route::get('/admin_dashboard', [AdminController::class,'adminDashboard'])->name('admin_dashboard');
 //Order Management
-Route::get('/order', [AdminOrderController::class,'index'])->name('order');
+Route::get('/new_order', [AdminOrderController::class,'index'])->name('new_order');
 Route::get('/order_details', [AdminOrderController::class,'showOrderDetails'])->name('order_details');
-
+Route::get('download_invoice/{id}', [OrderController::class,'downloadInvoice'])->name('download_invoice');
+Route::post('update-order-status/{id}',[OrderController::class,'updateStatus'])->name('update.order.status');
 
 
 

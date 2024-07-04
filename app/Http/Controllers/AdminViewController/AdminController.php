@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function index(Request $request){
         if($request->session()->has('ADMIN_LOGIN')){
-            return redirect('dashboard');
+            return redirect('admin_dashboard');
         }else{
             return view('admin_view.pages.login');
         }

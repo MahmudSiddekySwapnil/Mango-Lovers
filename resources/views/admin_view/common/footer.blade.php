@@ -1,18 +1,27 @@
-<!-- Footer Start -->
 <footer class="footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <script>document.write(new Date().getFullYear())</script> © Jidox - Coderthemes.com
-            </div>
-            <div class="col-md-6">
-                <div class="text-md-end footer-links d-none d-md-block">
-{{--                    <a href="javascript: void(0);">About</a>--}}
-{{--                    <a href="javascript: void(0);">Support</a>--}}
-{{--                    <a href="javascript: void(0);">Contact Us</a>--}}
-                </div>
-            </div>
+    <div class="container-fluid d-flex justify-content-between">
+        <nav class="pull-left">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://www.themekita.com">
+                        ThemeKita
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Help </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Licenses </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            2024, made with <i class="fa fa-heart heart text-danger"></i> by
+            <a href="http://www.themekita.com">ThemeKita</a>
+        </div>
+        <div>
+            Distributed by
+            <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
         </div>
     </div>
 </footer>
-<!-- end Footer -->
