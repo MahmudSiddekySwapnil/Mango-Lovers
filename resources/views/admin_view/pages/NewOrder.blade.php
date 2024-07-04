@@ -40,8 +40,8 @@
                             <thead>
                             <tr>
                                 <th>Order ID</th>
-                                <th>Customer Name</th>
-                                <th>Product Name</th>
+                                <th>Receiver Name</th>
+                                <th>Receiver Phone</th>
                                 <th>Address</th>
                                 <th>District</th>
                                 <th>City</th>
@@ -73,7 +73,8 @@
                 "scrollY": true,
                 "columnDefs": [
                     { targets: [2,6], className:'dt-right' },
-                    { targets: [0,1,2,3,4,5,6,7], className:'dt-head-center' }
+                    { targets: [0,1,2,3,4,5,6,7], className:'dt-head-center' },
+                    { targets: [0], wrap: true }
                 ],
                 "ajax": "{{ route('order_details') }}",
                 "columns": [
