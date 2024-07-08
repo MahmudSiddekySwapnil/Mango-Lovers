@@ -36,73 +36,121 @@ class AdminProductController extends Controller
         return view('admin_view.pages.ProductManage',compact('categories'));
 
     }
-
-
     public function productProcessor(Request $request)
     {
         // Validate the request
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'productName' => 'required|string|max:255',
             'productPrice' => 'required|numeric',
-            'productDescription' => 'nullable|string',
             'productStock' => 'required|integer',
-            'productCategory' => 'required|integer',
-            'productStatus' => 'required|integer',
-//            'main_picture' => 'required|string',
-//            'pictures.*' => 'string',
+            'productDescription' => 'required|string',
+            'productCategory' => 'required|exists:Categories,CategoryID',
+            'productStatus' => 'required|in:0,1',
+            'main_picture' => 'required|image|max:2048', // Max 2MB for main picture
+            'pictures.*' => 'image|max:2048', // Max 2MB for additional pictures
         ]);
 
-        // Create the product
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 422);
+        }
+
+        // Handle main picture upload
+        $mainPicturePath = $request->file('main_picture')->store('product_images', 'public');
+
+        // Create new product
         $product = new Products();
         $product->Name = $request->productName;
         $product->Price = $request->productPrice;
-        $product->Description = $request->productDescription;
         $product->Stock = $request->productStock;
+        $product->Description = $request->productDescription;
         $product->CategoryID = $request->productCategory;
-        $product->status = $request->productStatus;
+        $product->Status = $request->productStatus;
         $product->SKU = MangoLoversTrait::generateShortUUID('TR');
-
-        // Save the main image
-//        $mainImage = $this->saveBase64Image($request->main_picture);
-//        $product->picture = $mainImage;
+        $product->picture = $mainPicturePath; // Store main picture path
         $product->save();
 
-        // Save the additional images
-//        if ($request->has('pictures')) {
-//            foreach ($request->pictures as $picture) {
-//                $imagePath = $this->saveBase64Image($picture);
-//                $productImage = new ProductImage();
-//                $productImage->product_id = $product->id;
-//                $productImage->image_link = $imagePath;
-//                $productImage->status = 1;
-//                $productImage->save();
-//            }
-//        }
+        // Handle additional pictures upload
+        if ($request->hasFile('pictures')) {
+            foreach ($request->file('pictures') as $picture) {
+                $path = $picture->store('product_images', 'public');
+                $productImage = new ProductImage();
+                $productImage->product_id = $product->id; // Assuming product_id is foreign key in product_images table
+                $productImage->image_link = $path;
 
-        return response()->json(['message' => 'successful', 'url' => route('product_details')]);
-    }
-
-    private function saveBase64Image($base64Image)
-    {
-        $imageData = explode(';base64,', $base64Image);
-        $imageType = explode('image/', $imageData[0])[1];
-        $imageBase64 = base64_decode($imageData[1]);
-        $imageName = uniqid() . '.' . $imageType;
-        $directory = 'product_images/';
-
-        // Create directory if it does not exist
-        if (!Storage::disk('public')->exists($directory)) {
-            Storage::disk('public')->makeDirectory($directory, 0775, true); // Recursive create with permissions
+                $productImage->save();
+            }
         }
 
-        // Save the image
-        Storage::disk('public')->put($directory . $imageName, $imageBase64);
+        return response()->json(['message' => 'successful', 'url' => route('product_details')]);
 
-        // Set permissions explicitly (optional)
-        // Storage::disk('public')->setVisibility($directory . $imageName, 'public');
-
-        return $directory . $imageName;
     }
+
+//    public function productProcessor(Request $request)
+//    {
+//        dd($request->all());
+//        // Validate the request
+//        $request->validate([
+//            'productName' => 'required',
+//            'productPrice' => 'required|numeric',
+//            'productDescription' => 'nullable|string',
+//            'productStock' => 'required|integer',
+//            'productCategory' => 'required|integer',
+//            'productStatus' => 'required|integer',
+////            'main_picture' => 'required|string',
+////            'pictures.*' => 'string',
+//        ]);
+//
+//        // Create the product
+//        $product = new Products();
+//        $product->Name = $request->productName;
+//        $product->Price = $request->productPrice;
+//        $product->Description = $request->productDescription;
+//        $product->Stock = $request->productStock;
+//        $product->CategoryID = $request->productCategory;
+//        $product->status = $request->productStatus;
+//        $product->SKU = MangoLoversTrait::generateShortUUID('TR');
+//
+//        // Save the main image
+////        $mainImage = $this->saveBase64Image($request->main_picture);
+////        $product->picture = $mainImage;
+//        $product->save();
+//
+//        // Save the additional images
+////        if ($request->has('pictures')) {
+////            foreach ($request->pictures as $picture) {
+////                $imagePath = $this->saveBase64Image($picture);
+////                $productImage = new ProductImage();
+////                $productImage->product_id = $product->id;
+////                $productImage->image_link = $imagePath;
+////                $productImage->status = 1;
+////                $productImage->save();
+////            }
+////        }
+//
+//        return response()->json(['message' => 'successful', 'url' => route('product_details')]);
+//    }
+//
+//    private function saveBase64Image($base64Image)
+//    {
+//        $imageData = explode(';base64,', $base64Image);
+//        $imageType = explode('image/', $imageData[0])[1];
+//        $imageBase64 = base64_decode($imageData[1]);
+//        $imageName = uniqid() . '.' . $imageType;
+//        $directory = 'product_images/';
+//
+//        // Create directory if it does not exist
+//        if (!Storage::disk('public')->exists($directory)) {
+//            Storage::disk('public')->makeDirectory($directory, 0775, true); // Recursive create with permissions
+//        }
+//
+//        // Save the image
+//        Storage::disk('public')->put($directory . $imageName, $imageBase64);
+//
+//        // Set permissions explicitly (optional)
+//        // Storage::disk('public')->setVisibility($directory . $imageName, 'public');
+//
+//        return $directory . $imageName;
+//    }
 
     public function showProductList(Request $request)
     {

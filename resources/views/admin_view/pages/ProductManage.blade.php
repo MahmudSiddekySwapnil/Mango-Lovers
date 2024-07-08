@@ -77,28 +77,25 @@
                     <h4 class="card-title">Product Management</h4>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form id="productForm" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="productName">Product Name</label>
-                                    <input type="text" class="form-control" id="productName"
-                                           placeholder="Enter product name">
+                                    <input type="text" class="form-control" name="productName"id="productName" placeholder="Enter product name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="productPrice">Product Price</label>
-                                    <input type="text" class="form-control" id="productPrice"
-                                           placeholder="Enter product Price">
+                                    <input type="text" class="form-control" name="productPrice" id="productPrice" placeholder="Enter product Price">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="productStock">Product Stock</label>
-                                    <input type="text" class="form-control" id="productStock"
-                                           placeholder="Enter product Stock">
+                                    <input type="text" class="form-control" name="productStock" id="productStock" placeholder="Enter product Stock">
                                 </div>
                             </div>
                         </div>
@@ -106,14 +103,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="comment">Short Description</label>
-                                    <textarea class="form-control" id="productDescription" rows="5"
-                                              style="height: 203px;"></textarea>
+                                    <textarea class="form-control" name="productDescription" id="productDescription" rows="5" style="height: 203px;"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="productCategory">Category Select</label>
-                                    <select class="form-select form-control-lg" id="productCategory" name="category_id">
+                                    <select class="form-select form-control-lg" id="productCategory" name="productCategory">
                                         @foreach($categories as $category)
                                             <option value="{{ $category->CategoryID }}">{{ $category->Name }}</option>
                                         @endforeach
@@ -123,7 +119,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="productStatus">Product Status</label>
-                                    <select class="form-select form-control-lg" id="productStatus">
+                                    <select class="form-select form-control-lg" id="productStatus"  name="productStatus">
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                     </select>
@@ -134,7 +130,7 @@
                             <div class="col-md-12">
                                 <label for="productPictures">Product Pictures</label>
                                 <div class="container mt-1">
-                                    <div class="d-flex flex-wrap" id="image-container">
+                                    <div class="d-flex flex-wrap" id="image-container" name="image-container">
                                         <div class="card upload-card">
                                             <input id="service_pic" type="file" accept="image/*" multiple onchange="previewImages(event)">
                                             <div class="plus-sign">+</div>
@@ -168,13 +164,11 @@
                     const card = document.createElement('div');
                     card.classList.add('card', 'upload-card');
                     card.innerHTML = `
-                <img src="${e.target.result}" alt="Image Preview" class="image-preview" onclick="setAsMainImage(this)" style="display: block;">
-                <button class="delete-btn" onclick="removeImage(this)">×</button>
-            `;
-                    // Append each card to the image container
+                    <img src="${e.target.result}" alt="Image Preview" class="image-preview" onclick="setAsMainImage(this)" style="display: block;">
+                    <button class="delete-btn" onclick="removeImage(this)">×</button>
+                `;
                     imageContainer.appendChild(card);
 
-                    // Set the first uploaded image as the main image
                     if (existingImages.length === 0 && card.querySelector('.image-preview')) {
                         card.querySelector('.image-preview').classList.add('main-image');
                     }
@@ -185,11 +179,8 @@
         }
 
         function setAsMainImage(imgElement) {
-            // Remove main image border from all images
             const allImages = document.querySelectorAll('.image-preview');
             allImages.forEach(img => img.classList.remove('main-image'));
-
-            // Set the clicked image as the main image
             imgElement.classList.add('main-image');
         }
 
@@ -205,26 +196,20 @@
             card.remove();
         }
 
-        $('#productUpload').on('click', function (event) {
+        $('#productForm').on('submit', function (event) {
             event.preventDefault();
-            const formData = new FormData();
+            const formData = new FormData(this);
             const images = document.querySelectorAll('.image-preview');
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            // images.forEach((image, index) => {
-            //     if (image.classList.contains('main-image')) {
-            //         formData.append('main_picture', image.src); // Mark the main image
-            //     } else {
-            //         formData.append('pictures[]', image.src);
-            //     }
-            // });
-
-            formData.append('productName', $('#productName').val());
-            formData.append('productPrice', $('#productPrice').val());
-            formData.append('productDescription', $('#productDescription').val());
-            formData.append('productStock', $('#productStock').val());
-            formData.append('productCategory', $('#productCategory').val());
-            formData.append('productStatus', $('#productStatus').val());
+            images.forEach((image, index) => {
+                const blob = dataURItoBlob(image.src);
+                if (image.classList.contains('main-image')) {
+                    formData.append('main_picture', blob, `main_image_${index}.jpg`);
+                } else {
+                    formData.append('pictures[]', blob, `image_${index}.jpg`);
+                }
+            });
 
             $.ajax({
                 url: '{{ route("product_processor") }}',
@@ -252,5 +237,18 @@
                 }
             });
         });
+
+        // Convert base64 to Blob
+        function dataURItoBlob(dataURI) {
+            const byteString = atob(dataURI.split(',')[1]);
+            const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+            const ab = new ArrayBuffer(byteString.length);
+            const ia = new Uint8Array(ab);
+            for (let i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+            return new Blob([ab], { type: mimeString });
+        }
+
     </script>
 @endsection
