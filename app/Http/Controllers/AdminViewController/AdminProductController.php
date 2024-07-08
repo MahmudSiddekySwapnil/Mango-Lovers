@@ -63,21 +63,21 @@ class AdminProductController extends Controller
         $product->SKU = MangoLoversTrait::generateShortUUID('TR');
 
         // Save the main image
-        $mainImage = $this->saveBase64Image($request->main_picture);
-        $product->picture = $mainImage;
+//        $mainImage = $this->saveBase64Image($request->main_picture);
+//        $product->picture = $mainImage;
         $product->save();
 
         // Save the additional images
-        if ($request->has('pictures')) {
-            foreach ($request->pictures as $picture) {
-                $imagePath = $this->saveBase64Image($picture);
-                $productImage = new ProductImage();
-                $productImage->product_id = $product->id;
-                $productImage->image_link = $imagePath;
-                $productImage->status = 1;
-                $productImage->save();
-            }
-        }
+//        if ($request->has('pictures')) {
+//            foreach ($request->pictures as $picture) {
+//                $imagePath = $this->saveBase64Image($picture);
+//                $productImage = new ProductImage();
+//                $productImage->product_id = $product->id;
+//                $productImage->image_link = $imagePath;
+//                $productImage->status = 1;
+//                $productImage->save();
+//            }
+//        }
 
         return response()->json(['message' => 'successful', 'url' => route('product_details')]);
     }
