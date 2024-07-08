@@ -63,13 +63,14 @@ Route::middleware(['user_auth'])->group(function () {
 
 
 
+Route::post('product_adder', [AdminProductController::class,'productProcessor'])->name('product_processor');
 
 
 //admin
 Route::get('/admin_login',[AdminController::class,'index'])->name('admin_login');
 Route::post('/user_auth_data',[AdminController::class,'authData'])->name('login');
 Route::get('/admin_logout',[AdminController::class,'adminLogout'])->name('admin_logout');
-
+//middleware
 Route::middleware(['admin_auth'])->group(function () {
 Route::get('/admin_dashboard', [AdminController::class,'adminDashboard'])->name('admin_dashboard');
 //Order Management
@@ -80,7 +81,6 @@ Route::post('update-order-status/{id}',[OrderController::class,'updateStatus'])-
 //product
 Route::get('/product_details', [AdminProductController::class,'index'])->name('product_details');
 Route::get('/product_mange', [AdminProductController::class,'productManage'])->name('product_mange');
-Route::post('product_adder', [AdminProductController::class,'productProcessor'])->name('product_processor');
 Route::get('/product_list', [AdminProductController::class,'showProductList'])->name('product_list');
 Route::post('/manage_product_status', [AdminProductController::class,'mangeProductStatus'])->name('manage_product_status');
 Route::delete('/delete_producct/{id}', [AdminProductController::class,'deleteProduct']);
