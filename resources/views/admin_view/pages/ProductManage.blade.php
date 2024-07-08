@@ -1,4 +1,3 @@
-
 @extends('admin_view.layouts.layouts')
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -152,7 +151,7 @@
     </div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
@@ -206,10 +205,8 @@
             card.remove();
         }
 
-        document.getElementById("productUpload").addEventListener("click", function (event) {
+        $('#productUpload').on('click', function (event) {
             event.preventDefault();
-            const csrfTokenInput = document.querySelector('input[name="_token"]');
-            const csrfTokenValue = csrfTokenInput.value;
             const formData = new FormData();
             const images = document.querySelectorAll('.image-preview');
 
@@ -228,34 +225,31 @@
             formData.append('productCategory', $('#productCategory').val());
             formData.append('productStatus', $('#productStatus').val());
 
-            let url = '/product_processor';
-
-            fetch(url, {
-                method: 'POST',
-                body: formData,
+            $.ajax({
+                url: '/product_processor',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
                 headers: {
-                    'X-CSRF-TOKEN': csrfTokenValue,
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-            }).then(response => response.json())
-                .then(data => {
-                    let message = data.message;
-                    if (data.message === 'successful') {
-                        window.location.href = data.url;
+                success: function (response) {
+                    if (response.message === 'successful') {
+                        window.location.href = response.url;
                     } else {
                         Swal.fire({
                             icon: 'warning',
                             title: 'Failed',
-                            text: data.message,
+                            text: response.message,
                             timer: 3000
                         });
                     }
-                }).catch((err) => {
-                console.error(err);
-            }).finally(() => {
-                // Optionally hide a modal or perform other cleanup
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
             });
         });
-
-
     </script>
 @endsection
