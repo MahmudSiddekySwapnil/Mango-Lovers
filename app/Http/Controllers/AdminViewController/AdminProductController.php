@@ -88,9 +88,20 @@ class AdminProductController extends Controller
         $imageType = explode('image/', $imageData[0])[1];
         $imageBase64 = base64_decode($imageData[1]);
         $imageName = uniqid() . '.' . $imageType;
-        Storage::disk('public')->put('product_images/' . $imageName, $imageBase64);
+        $directory = 'product_images/';
 
-        return 'product_images/' . $imageName;
+        // Create directory if it does not exist
+        if (!Storage::disk('public')->exists($directory)) {
+            Storage::disk('public')->makeDirectory($directory, 0775, true); // Recursive create with permissions
+        }
+
+        // Save the image
+        Storage::disk('public')->put($directory . $imageName, $imageBase64);
+
+        // Set permissions explicitly (optional)
+        // Storage::disk('public')->setVisibility($directory . $imageName, 'public');
+
+        return $directory . $imageName;
     }
 
     public function showProductList(Request $request)

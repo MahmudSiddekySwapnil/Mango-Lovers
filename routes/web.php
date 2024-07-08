@@ -80,7 +80,7 @@ Route::post('update-order-status/{id}',[OrderController::class,'updateStatus'])-
 //product
 Route::get('/product_details', [AdminProductController::class,'index'])->name('product_details');
 Route::get('/product_mange', [AdminProductController::class,'productManage'])->name('product_mange');
-Route::post('/product_processor', [AdminProductController::class,'productProcessor'])->name('product_processor');
+Route::post('product_adder', [AdminProductController::class,'productProcessor'])->name('product_processor');
 Route::get('/product_list', [AdminProductController::class,'showProductList'])->name('product_list');
 Route::post('/manage_product_status', [AdminProductController::class,'mangeProductStatus'])->name('manage_product_status');
 Route::delete('/delete_producct/{id}', [AdminProductController::class,'deleteProduct']);

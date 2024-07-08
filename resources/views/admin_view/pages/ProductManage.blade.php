@@ -226,7 +226,7 @@
             formData.append('productStatus', $('#productStatus').val());
 
             $.ajax({
-                url: '/product_processor',
+                url: 'product_adder',
                 type: 'POST',
                 data: formData,
                 contentType: false,
