@@ -78,6 +78,7 @@
                 </div>
                 <div class="card-body">
                     <form>
+                        @csrf
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -225,7 +226,7 @@
             formData.append('productStatus', $('#productStatus').val());
 
             $.ajax({
-                url: 'product_adder',
+                url: '{{ route("product_processor") }}',
                 type: 'POST',
                 data: formData,
                 contentType: false,
