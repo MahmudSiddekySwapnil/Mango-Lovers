@@ -1,6 +1,8 @@
 
 @extends('admin_view.layouts.layouts')
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <style>
         .upload-card {
             width: 200px;
