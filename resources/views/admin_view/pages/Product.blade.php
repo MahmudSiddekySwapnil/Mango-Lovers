@@ -124,7 +124,7 @@
                     {
                         data: null,
                         render: function (data, type, row) {
-                            var id = row.ProductID;
+                            var id = parseInt(data.ProductID);
                             return `<button type="button" data-id="${id}" class="btn btn-danger delete-button"><i class="icon-trash" style="font-size:30px;"></i></button>`
                         }
                     },
