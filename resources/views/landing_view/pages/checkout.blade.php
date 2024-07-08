@@ -163,9 +163,10 @@
                         data.forEach(function(item) {
                             let price = Number(item.price); // Convert to number if necessary
                             let total_price = Number(item.total_price);
+                            let imageUrl ='storage/' + item.picture;
                             let product = `
                             <div class="checkout-product">
-                                <img class="checkout-product-image" src="${item.picture}" alt="Product Image">
+                                <img class="checkout-product-image" src="${imageUrl}" alt="Product Image">
                                 <div class="checkout-product-info">
                                     <div><strong>${item.Name}</strong></div>
                                     <div>Quantity: ${item.quantity}</div>

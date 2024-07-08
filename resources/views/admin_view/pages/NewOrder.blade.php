@@ -1,6 +1,3 @@
-<!-- Include SweetAlert2 CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
-
 @extends('admin_view.layouts.layouts')
 @section('content')
     <div class="page-header">

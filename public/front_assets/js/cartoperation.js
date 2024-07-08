@@ -65,11 +65,12 @@ document.addEventListener('DOMContentLoaded', function() {
         cartItems.forEach(item => {
             totalItems += item.quantity;
             totalAmount += item.quantity * item.Price;
+            let imageUrl ='storage/' + item.picture;
             let cartItemHTML = `
                 <li class="cart-item" data-id="${item.SKU}">
                     <div class="cart-media">
                         <a href="#">
-                            <img src="${item.picture}" alt="product">
+                            <img src="${imageUrl}" alt="product">
                         </a>
                     </div>
                     <div class="cart-info-group">

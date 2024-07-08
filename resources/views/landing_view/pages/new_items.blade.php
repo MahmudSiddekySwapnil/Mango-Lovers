@@ -17,8 +17,9 @@
                                 <div class="product-label"><label class="label-text new">new</label></div>
                                 <button class="product-wish wish"><i class="fas fa-heart"></i></button>
                                 <a class="product-image" href="product-video.html">
-                                    <img src="{{ asset($list->picture) }}" class="img-fluid" alt="product">
+                                    <img src="{{ asset('storage/' . $list->picture) }}" class="img-fluid" alt="product">
                                 </a>
+
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">

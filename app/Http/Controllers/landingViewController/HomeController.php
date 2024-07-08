@@ -22,6 +22,7 @@ class HomeController extends Controller
         return view('landing_view.pages.home', $result);
     }
 
+
     public function userLogin()
     {
         return view('landing_view.pages.login_page');

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminViewController\AdminController;
 use App\Http\Controllers\AdminViewController\AdminOrderController;
+use App\Http\Controllers\AdminViewController\AdminProductController;
+use App\Http\Controllers\AdminViewController\CategoryController;
 use App\Http\Controllers\landingViewController\HomeController;
 use App\Http\Controllers\landingViewController\OrderController;
 use App\Http\Controllers\landingViewController\ProductController;
@@ -75,7 +77,16 @@ Route::get('/new_order', [AdminOrderController::class,'index'])->name('new_order
 Route::get('/order_details', [AdminOrderController::class,'showOrderDetails'])->name('order_details');
 Route::get('download_invoice/{id}', [OrderController::class,'downloadInvoice'])->name('download_invoice');
 Route::post('update-order-status/{id}',[OrderController::class,'updateStatus'])->name('update.order.status');
+//product
+Route::get('/product_details', [AdminProductController::class,'index'])->name('product_details');
+Route::get('/product_mange', [AdminProductController::class,'productManage'])->name('product_mange');
+Route::post('/product_processor', [AdminProductController::class,'productProcessor'])->name('product_processor');
+Route::get('/product_list', [AdminProductController::class,'showProductList'])->name('product_list');
+Route::post('/manage_product_status', [AdminProductController::class,'mangeProductStatus'])->name('manage_product_status');
+Route::delete('/delete_producct/{id}', [AdminProductController::class,'deleteProduct']);
 
+//category
+Route::get('/category_list', [CategoryController::class, 'categoryListShow'])->name('category_list');
 
 
 
