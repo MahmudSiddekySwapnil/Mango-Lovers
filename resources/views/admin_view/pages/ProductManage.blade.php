@@ -209,14 +209,15 @@
             event.preventDefault();
             const formData = new FormData();
             const images = document.querySelectorAll('.image-preview');
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            images.forEach((image, index) => {
-                if (image.classList.contains('main-image')) {
-                    formData.append('main_picture', image.src); // Mark the main image
-                } else {
-                    formData.append('pictures[]', image.src);
-                }
-            });
+            // images.forEach((image, index) => {
+            //     if (image.classList.contains('main-image')) {
+            //         formData.append('main_picture', image.src); // Mark the main image
+            //     } else {
+            //         formData.append('pictures[]', image.src);
+            //     }
+            // });
 
             formData.append('productName', $('#productName').val());
             formData.append('productPrice', $('#productPrice').val());
@@ -232,7 +233,7 @@
                 contentType: false,
                 processData: false,
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': csrfToken
                 },
                 success: function (response) {
                     if (response.message === 'successful') {

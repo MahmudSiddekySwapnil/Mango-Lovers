@@ -48,8 +48,8 @@ class AdminProductController extends Controller
             'productStock' => 'required|integer',
             'productCategory' => 'required|integer',
             'productStatus' => 'required|integer',
-            'main_picture' => 'required|string',
-            'pictures.*' => 'string',
+//            'main_picture' => 'required|string',
+//            'pictures.*' => 'string',
         ]);
 
         // Create the product
