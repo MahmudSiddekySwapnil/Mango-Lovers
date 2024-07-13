@@ -1,6 +1,4 @@
 <!-- Include SweetAlert2 CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
-
 @extends('admin_view.layouts.layouts')
 @section('content')
     <div class="page-header">
@@ -52,6 +50,7 @@
                         <table
                             id="order-details-datatables"
                             class="display table table-striped table-hover"
+                            style="width: 100%;"
                         >
                             <thead>
                             <tr>
@@ -76,10 +75,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Include SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
-
     <script>
         $(document).ready(function () {
             var table = $("#order-details-datatables").DataTable({
@@ -242,9 +237,5 @@
                 }
             });
         });
-
-
-
-
     </script>
 @endsection

@@ -87,7 +87,11 @@ Route::delete('/delete_producct/{id}', [AdminProductController::class,'deletePro
 
 //category
 Route::get('/category_list', [CategoryController::class, 'categoryListShow'])->name('category_list');
-
+Route::get('/category', [CategoryController::class, 'index'])->name('category');
+Route::post('/category_manage', [CategoryController::class,'mangeCategory'])->name('category_manage');
+Route::get('/category_data', [CategoryController::class,'showCategoryList'])->name('category_data');
+Route::post('/manage_category_status', [CategoryController::class,'mangeCategoryStatus'])->name('manage_category_status');
+Route::delete('/delete_category/{id}', [CategoryController::class,'deleteCategory']);
 
 
 
