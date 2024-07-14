@@ -1,23 +1,56 @@
 <style>
     .video-container {
-        position: relative;
-        padding-bottom: 56.25%; /* 16:9 ratio */
-        height: 0;
-        overflow: hidden;
-        max-width: 100%;
-        background: #000;
-        margin: 0 auto; /* Center the container */
-        border: 2px solid #ccc; /* Border */
-        border-radius: 10px; /* Rounded corners */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow */
+        display: flex;
+        justify-content: center;
     }
-
-    .video-container iframe {
+    .embed-responsive {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+    }
+    .embed-responsive::before {
+        display: block;
+        content: "";
+    }
+    .embed-responsive-16by9::before {
+        padding-top: 56.25%;
+    }
+    .embed-responsive-item {
         position: absolute;
         top: 0;
+        bottom: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        border: 0;
+    }
+
+    .category-wrap {
+        width: 500px; /* Increase card width */
+        margin: 0 auto;
+        background: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    .category-media {
+        width: 100%;
+        height: 300px; /* Increase card height */
+        overflow: hidden;
+    }
+    .category-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .category-meta {
+        padding: 10px;
+    }
+    .carousel-item {
+        display: flex;
+        justify-content: center;
     }
 </style>
 <section class="section category-part">
@@ -33,8 +66,10 @@
        <div class="row">
 
            <div class="col-lg-12">
-               <div class="video-container">
-                   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/yCgJiYyr4lI" allowfullscreen></iframe>
+               <div class="video-container col-lg-6 mx-auto">
+                   <div class="embed-responsive embed-responsive-16by9">
+                       <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/yCgJiYyr4lI" allowfullscreen></iframe>
+                   </div>
                </div>
           &nbsp;&nbsp;
 
