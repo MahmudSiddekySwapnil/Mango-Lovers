@@ -20,6 +20,11 @@
     <link rel="stylesheet" href="front_assets/css/main.css">
     <link rel="stylesheet" href="front_assets/css/home-standard.css">
     <style>
+        @media (min-width: 1400px) {
+            .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+                max-width: 1550px;
+            }
+        }
         .p-add {
             width: 100%;
             font-size: 15px;
@@ -96,7 +101,7 @@
                     <button class="header-src"><i class="fas fa-search"></i></button>
                 </div>
                 <a href="/" class="header-logo"><img src="front_assets/images/mango/logo.png" alt="logo"
-                                                     style="width:100px; height:50px;"></a>
+                                                     style=""></a>
                 @if(session()->has('username'))
                     <li class="navbar-item dropdown header-widget">
                         <img src="front_assets/images/user.png" alt="user">

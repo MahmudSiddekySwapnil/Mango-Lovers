@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminViewController\AdminBannerController;
 use App\Http\Controllers\AdminViewController\AdminController;
 use App\Http\Controllers\AdminViewController\AdminOrderController;
 use App\Http\Controllers\AdminViewController\AdminProductController;
@@ -65,11 +66,11 @@ Route::middleware(['user_auth'])->group(function () {
 
 
 
-//admin
+//admin without middleware------------------------------------------>
 Route::get('/admin_login',[AdminController::class,'index'])->name('admin_login');
 Route::post('/user_auth_data',[AdminController::class,'authData'])->name('login');
 Route::get('/admin_logout',[AdminController::class,'adminLogout'])->name('admin_logout');
-
+//auth middleware routes-------------------------------------------->
 Route::middleware(['admin_auth'])->group(function () {
 Route::get('/admin_dashboard', [AdminController::class,'adminDashboard'])->name('admin_dashboard');
 //Order Management
@@ -84,7 +85,6 @@ Route::post('/product_processor', [AdminProductController::class,'productProcess
 Route::get('/product_list', [AdminProductController::class,'showProductList'])->name('product_list');
 Route::post('/manage_product_status', [AdminProductController::class,'mangeProductStatus'])->name('manage_product_status');
 Route::delete('/delete_producct/{id}', [AdminProductController::class,'deleteProduct']);
-
 //category
 Route::get('/category_list', [CategoryController::class, 'categoryListShow'])->name('category_list');
 Route::get('/category', [CategoryController::class, 'index'])->name('category');
@@ -92,47 +92,13 @@ Route::post('/category_manage', [CategoryController::class,'mangeCategory'])->na
 Route::get('/category_data', [CategoryController::class,'showCategoryList'])->name('category_data');
 Route::post('/manage_category_status', [CategoryController::class,'mangeCategoryStatus'])->name('manage_category_status');
 Route::delete('/delete_category/{id}', [CategoryController::class,'deleteCategory']);
+//banner
+Route::get('/banner', [AdminBannerController::class, 'index'])->name('banner');
+Route::post('/banner_manage', [AdminBannerController::class,'mangeBanner'])->name('banner_manage');
+Route::get('/banner_data', [AdminBannerController::class,'showBannerList'])->name('banner_data');
+Route::post('/manage_banner_status', [AdminBannerController::class,'mangeBannerStatus'])->name('manage_banner_status');
+Route::delete('/delete_banner/{id}', [AdminBannerController::class,'deleteBanner']);
 
 
-
-
-    //admin banner
-    Route::get('/home_banner', [HomeBannerController::class,'index'])->name('home_banner');
-    Route::post('/home_banner_processor', [HomeBannerController::class,'bannerProcessing'])->name('home_banner_processor');
-    Route::get('/show_banner_details', [HomeBannerController::class,'showBannerData'])->name('show_banner_details');
-    Route::post('/manage_banner_status', [HomeBannerController::class,'mangeBannerStatus'])->name('manage_banner_status');
-    Route::delete('/delete_banner/{id}', [HomeBannerController::class,'deleteBanner']);
-    //admin service
-    Route::get('/company_service', [CompanyServiceController::class,'index'])->name('company_service');
-    Route::post('/company_service_processor', [CompanyServiceController::class,'addServiceDetails'])->name('company_service_processor');
-    Route::get('/show_service_details', [CompanyServiceController::class,'showServiceDetails'])->name('show_service_details');
-    Route::delete('/delete_service/{id}', [CompanyServiceController::class,'deleteService']);
-    Route::post('/manage_service_status', [CompanyServiceController::class,'mangeServiceStatus'])->name('manage_service_status');
-
-    //partner manage
-    Route::get('/partners_management', [PartnerController::class,'index'])->name('partners_management');
-    Route::post('/manage_partner_status', [PartnerController::class,'managePartner'])->name('manage_partner_status');
-    Route::get('/show_partner_logo', [PartnerController::class,'showPartnerDetails'])->name('show_partner_logo');
-    Route::delete('/delete_partner_logo/{id}', [PartnerController::class,'deletePartnerLogo']);
-    Route::post('/manage_status', [PartnerController::class,'managePartnerStatus'])->name('manage_status');
-
-    //companyServiceFact
-    Route::get('/company_service_fact', [CompanyFactController::class,'index'])->name('company_service_fact');
-    Route::post('/company_service_fact_processor', [CompanyFactController::class,'manageServiceFact'])->name('company_service_fact_processor');
-    Route::get('/show_company_service_fact', [CompanyFactController::class,'showCompanyServiceFact'])->name('show_company_service_fact');
-    Route::delete('/delete_service_fact/{id}', [CompanyFactController::class,'deleteServiceFact']);
-    Route::post('/service_fact_manage_status', [CompanyFactController::class,'manageServiceFactStatus'])->name('service_fact_manage_status');
-
-    //Company profile manage
-    Route::get('/company_profile', [companyProfileController::class,'index'])->name('company_profile');
-    Route::post('/company_profile_manage', [companyProfileController::class,'companyProfileManage'])->name('company_profile_manage');
-    Route::get('/company_profile_data_show', [companyProfileController::class,'showProfileDetails'])->name('company_profile_data_show');
-
-    //Team members profile manage
-    Route::get('/team_profile', [TeamManageController::class,'index'])->name('team_profile');
-    Route::post('/team_members_profile_manage', [TeamManageController::class,'teamProfileManage'])->name('team_members_profile_manage');
-    Route::get('/show_all_team_members', [TeamManageController::class,'showTeamMemberProfileDetails'])->name('show_all_team_members');
-    Route::post('/manage_member_status', [TeamManageController::class,'mangeTeamProfileStatus'])->name('manage_member_status');
-    Route::delete('/delete_member_profile/{id}', [TeamManageController::class,'deleteTeamMemberProfile']);
 
 });

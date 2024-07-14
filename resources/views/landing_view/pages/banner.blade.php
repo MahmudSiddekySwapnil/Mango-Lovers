@@ -1,69 +1,73 @@
-<div class="col-lg-9">
+<style>
+    /* Ensure images are responsive and maintain aspect ratio */
+    .responsive-image {
+        width: 100%;
+        height: auto; /* Auto height to maintain aspect ratio */
+        object-fit: cover; /* Ensure the image covers the container without distortion */
+        max-height: 450px; /* Fixed max height for all devices */
+    }
+
+    /* Make sure the parent container is responsive */
+    .home-grid-slider {
+        width: 100%;
+    }
+
+    /* Additional styling for the slider */
+    .banner-wrap {
+        margin-bottom: 20px; /* Adjust as needed for spacing */
+    }
+
+    /* Responsive layout adjustments */
+    @media (max-width: 768px) {
+        .responsive-image {
+            max-height: 300px; /* Adjust height for smaller screens if necessary */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .responsive-image {
+            max-height: 250px; /* Adjust height for even smaller screens if necessary */
+        }
+    }
+    .banner-image {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .banner-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain; /* This ensures the image will scale down to fit within its container without cropping */
+        max-width: 100%;
+
+    }
+</style>
+
+<div class="col-lg-10">
     <div class="row">
-       <div class="col-lg-12">
-          <div class="home-grid-slider slider-dots">
-             <div class="banner-wrap">
-                <div class="row align-items-center">
-                   <div class="col-md-12 col-lg-12">
-                      <div class="banner-content">
-                          <div class="banner-image"><img src="front_assets/images/mango/mango.JPG" alt="" style="height:450px;"></div>
-                      </div>
-                   </div>
-{{--                   <div class="col-md-7 col-lg-7">--}}
-{{--                      <div class="banner-image"><img src="front_assets/images/mango/mango.JPG" alt="" style="height:450px;"></div>--}}
-{{--                   </div>--}}
+        <div class="col-lg-12">
+            <div class="home-grid-slider slider-dots">
+                @foreach($banners as $banner)
+                <div class="banner-wrap">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12">
+                            <div class="banner-content">
+                                <div class="banner-image">
+                                    <img src="{{$banner->image_url}}" alt="Mango" class="responsive-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-             </div>
-             <div class="banner-wrap">
-                <div class="row align-items-center">
-                   <div class="col-lg-12">
-                      <div class="banner-content">
-                          <div class="banner-image"><img src="front_assets/images/mango/love.jpg" alt="" style="height:450px;"></div>
-                      </div>
-                   </div>
-{{--                   <div class="col-md-7 col-lg-7">--}}
-{{--                      <div class="banner-image"><img src="front_assets/images/mango/love.jpg" alt="" style="height:450px;"></div>--}}
-{{--                   </div>--}}
-                </div>
-             </div>
-             <div class="banner-wrap">
-                <div class="row align-items-center">
-                   <div class="col-md-12 col-lg-12">
-                      <div class="banner-content">
-                          <div class="banner-image"><img src="front_assets/images/mango/DP.jpg" alt="" style="height:450px;"></div>
-
-                      </div>
-                   </div>
-{{--                   <div class="col-md-7 col-lg-7">--}}
-{{--                      <div class="banner-image"><img src="front_assets/images/mango/Raihan.jpg" alt="" style="height:450px;"></div>--}}
-{{--                   </div>--}}
-                </div>
-             </div>
-
-{{--              <div class="banner-wrap">--}}
-{{--                  <div class="row align-items-center">--}}
-{{--                      <div class="col-md-5 col-lg-5">--}}
-{{--                          <div class="banner-content">--}}
-{{--                              <h2>we are delivered organic foods item within 24 hours.</h2>--}}
-{{--                                                       <a href="#" class="btn btn-inline"><i class="fas fa-shopping-basket"></i><span>shop now</span></a>--}}
-{{--                          </div>--}}
-{{--                      </div>--}}
-{{--                      <div class="col-md-7 col-lg-7">--}}
-{{--                          <div class="banner-image"><img src="front_assets/images/mango/EMAZ.jpg" alt="" style="height:450px;"></div>--}}
-{{--                      </div>--}}
-{{--                  </div>--}}
-{{--              </div>--}}
-          </div>
-       </div>
-{{--       <div class="col-md-6 col-lg-6">--}}
-{{--          <div class="banner-promo"><a href="#"><img src="front_assets/images/mango/mangobanner.JPEG" alt="promo"></a></div>--}}
-{{--       </div>--}}
-{{--       <div class="col-md-6 col-lg-6">--}}
-{{--          <div class="banner-promo"><a href="#"><img src="front_assets/images/mango/DPP.png"  style=" width:419px; height:279px;" alt="promo"></a></div>--}}
-{{--       </div>--}}
+                @endforeach
+            </div>
+        </div>
     </div>
- </div>
-
+</div>
 
 <section class="intro-part">
     <div class="container">
@@ -107,7 +111,3 @@
         </div>
     </div>
 </section>
-
-
-
-

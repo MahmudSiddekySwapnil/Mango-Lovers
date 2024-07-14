@@ -1,4 +1,4 @@
-<div class="col-lg-3">
+<div class="col-lg-2">
     <div class="banner-category">
        <div class="banner-category-head"><i class="fas fa-bars"></i><span>top categories</span></div>
        <ul class="banner-category-list">

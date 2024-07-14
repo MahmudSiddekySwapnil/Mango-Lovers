@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\landingViewController;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminModel\Banners;
 use App\Models\LandingModel\Users;
 use App\Models\LandingModel\ProductImage;
 use App\Models\LandingModel\Products;
@@ -18,6 +19,7 @@ class HomeController extends Controller
 {
     public function home()
     {
+        $result['banners'] = Banners::where('status', 1)->get();
         $result['products'] = Products::where('status', 1)->get();
         return view('landing_view.pages.home', $result);
     }
